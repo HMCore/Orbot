@@ -1,0 +1,6 @@
+servers.json
+admin.json
+/build
+/.gradle
+/gradle
+/.idea
