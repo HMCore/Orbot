@@ -1,3 +1,5 @@
+package de.wulkanat
+
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.list
@@ -82,6 +84,10 @@ object Channels {
     }
 
     private fun saveChannels() {
-        SERVERS_FILE.writeText(json.stringify(DiscordChannel.serializer().list, channels))
+        SERVERS_FILE.writeText(
+            json.stringify(
+                DiscordChannel.serializer().list,
+                channels
+            ))
     }
 }

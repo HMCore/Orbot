@@ -26,4 +26,22 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+jar {
+    manifest {
+        attributes('Main-Class': 'de.wulkanat.MainKt')
+    }
+}
+
+task fatJar(type: Jar) {
+    baseName = project.name + '-all'
+    from((configurations.compile.findAll { !it.path.endsWith(".pom") }).collect {
+        it.isDirectory() ? it : zipTree(it)
+    })
+    with jar
+    manifest {
+        attributes 'Main-Class': 'de.wulkanat.MainKt',
+                'Implementation-Version': version
+    }
+}
+
 apply plugin: 'kotlinx-serialization'

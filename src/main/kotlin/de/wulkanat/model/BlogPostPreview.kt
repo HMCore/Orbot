@@ -1,8 +1,8 @@
-package model
+package de.wulkanat.model
 
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
-import extensions.hex2Rgb
+import de.wulkanat.extensions.hex2Rgb
 
 data class BlogPostPreview(
     val title: String,

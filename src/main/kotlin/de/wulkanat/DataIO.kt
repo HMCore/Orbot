@@ -1,3 +1,5 @@
+package de.wulkanat
+
 import kotlinx.serialization.Serializable
 import java.io.File
 

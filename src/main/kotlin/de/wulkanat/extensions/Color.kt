@@ -1,4 +1,4 @@
-package extensions
+package de.wulkanat.extensions
 
 import java.awt.Color
 

@@ -1,12 +1,15 @@
+package de.wulkanat
+
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
-import web.SiteWatcher
+import de.wulkanat.web.SiteWatcher
 import kotlin.concurrent.timer
 
 fun main() {
     // TODO: move toke into file
-    val builder = JDABuilder.createLight(Admin.token,
+    val builder = JDABuilder.createLight(
+        Admin.token,
         GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
         .addEventListeners(Bot())
         .setActivity(Activity.watching("for new Blogposts"))

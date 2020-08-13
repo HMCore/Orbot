@@ -1,3 +1,5 @@
+package de.wulkanat
+
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import net.dv8tion.jda.api.EmbedBuilder
@@ -24,7 +26,7 @@ object Admin {
 
         admin = value?.retrieveUserById(userId)?.complete()
         if (admin == null) {
-            kotlin.io.println("Connection to Admin failed!")
+            kotlin.io.println("Connection to de.wulkanat.Admin failed!")
         } else {
             kotlin.io.println("Connected to ${admin!!.name}. No further errors will be printed here.")
         }
@@ -86,7 +88,7 @@ object Admin {
     fun ready() {
         sendDevMessage(
             EmbedBuilder()
-                .setTitle("Now watching for new Hytale Blogposts every ${updateMs/1000}s")
+                .setTitle("Now watching for new Hytale Blogposts every ${updateMs / 1000}s")
                 .setDescription(Channels.getServerNames().joinToString("\n"))
                 .setColor(Color.GREEN)
                 .build(),

@@ -1,7 +1,9 @@
-import model.BlogPostPreview
+package de.wulkanat
+
+import de.wulkanat.model.BlogPostPreview
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
-import web.SiteWatcher
+import de.wulkanat.web.SiteWatcher
 import kotlin.system.exitProcess
 
 class Cli : ListenerAdapter() {

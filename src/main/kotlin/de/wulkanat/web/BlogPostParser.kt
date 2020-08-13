@@ -1,6 +1,6 @@
-package web
+package de.wulkanat.web
 
-import model.BlogPostPreview
+import de.wulkanat.model.BlogPostPreview
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 
