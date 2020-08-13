@@ -20,7 +20,7 @@ fun main() {
 
     Channels.jda = builder
     Admin.jda = builder
-    Admin.ready()
+    Admin.info()
 
     Runtime.getRuntime().addShutdownHook(object : Thread() {
         override fun run() {

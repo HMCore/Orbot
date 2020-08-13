@@ -51,6 +51,9 @@ class Cli : ListenerAdapter() {
                         Admin.warning("Unknown Channel ID")
                     }
                 }
+                "info" -> {
+                    Admin.info()
+                }
             }
         } catch (e: ArrayIndexOutOfBoundsException) {
             // noop

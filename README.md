@@ -3,7 +3,7 @@ A bot that automatically polls the newest blogpost from [Hytale News Tab](https:
 ## Setup
 Okay, this isn't really meant for you to setup, if you want it though it first is easier to just dm me on Twitter [@tale_talk](https://twitter.com/tale_talk) so I can add you to the server list.
 If you *really* want to set it up yourself, fine.
-1. first clone the repo, build it, etc.
+1. first go to the release tab, download the jar, and put it in a folder
 2. Add two files in the root of the repo, an `admin.json` and a `servers.json`.
 Add your Discord ID (not name), Bot token, and update frequency to the `admin.json`:
 ```json
@@ -13,10 +13,14 @@ Add your Discord ID (not name), Bot token, and update frequency to the `admin.js
 ```json
 []
 ```
-
 Not sure, but it might be that multiline JSON doesn't work.
 
-Start the server. If you put in everything correctly, the bot should message you on Discord.
+## Compiling yourself
+I developed it under Windows, and had some trouble compiling it on Linux. You mileage may vary.
+
+## Admin commands
+
+Start the server with `java -jar [server-file-name]` If you put in everything correctly, the bot should message you on Discord.
 ### Adding Servers
 ```
 %!addChannel [channelID] [roleID/everyone]
@@ -30,7 +34,14 @@ Second argument is optional.
 ```
 %!stop
 ```
-
+### Show servers, channels and roles
+```
+%!info
+```
 
 These commands will work in every channel, but will be ignored if they don't come from you, however the bot will always respond in a private message.
 It will also print errors directly in a Discord private message.
+
+## TODO
+
+Mainly reaction roles for convenience, self setup on invite to server, Twitter integration.

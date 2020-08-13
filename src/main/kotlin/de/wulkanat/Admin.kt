@@ -85,7 +85,7 @@ object Admin {
         )
     }
 
-    fun ready() {
+    fun info() {
         sendDevMessage(
             EmbedBuilder()
                 .setTitle("Now watching for new Hytale Blogposts every ${updateMs / 1000}s")
