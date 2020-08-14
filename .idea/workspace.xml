@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="">
+    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="[1.1]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +122,7 @@
       <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\src\main\kotlin\de\wulkanat" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
+  <component name="RunManager" selected="Gradle.HytaleUpdateBot [fatJar]">
     <configuration name="HytaleUpdateBot [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -161,8 +161,23 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="HytaleUpdateBot-1.0-SNAPSHOT-all.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/HytaleUpdateBot-1.0-SNAPSHOT-all.jar" />
+    <configuration name="HytaleUpdateBot [fatJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="fatJar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
     <configuration name="HytaleUpdateBot-all-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
@@ -184,11 +199,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.HytaleUpdateBot [fatJar]" />
         <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Gradle.HytaleUpdateBot [build]" />
         <item itemvalue="Gradle.HytaleUpdateBot [clean]" />
         <item itemvalue="JAR Application.HytaleUpdateBot-all-1.0-SNAPSHOT.jar" />
-        <item itemvalue="JAR Application.HytaleUpdateBot-1.0-SNAPSHOT-all.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -210,12 +225,20 @@
       <option name="project" value="LOCAL" />
       <updated>1597437833375</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add auto publish feature">
+      <created>1597438052596</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1597438052596</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add auto publish feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add auto publish feature" />
+    <MESSAGE value="[1.1]" />
+    <option name="LAST_COMMIT_MESSAGE" value="[1.1]" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="179" key="#Project_Structure" timestamp="1597434105164">
@@ -242,30 +265,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="128" y="270" width="490" height="591" key="#xdebugger.evaluate/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597332665464" />
-    <state x="569" y="115" key="CommitChangelistDialog2" timestamp="1597438051500">
+    <state x="569" y="115" key="CommitChangelistDialog2" timestamp="1597438290366">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="569" y="115" key="CommitChangelistDialog2/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597438051500" />
-    <state width="1876" height="161" key="GridCell.Tab.0.bottom" timestamp="1597437840934">
+    <state x="569" y="115" key="CommitChangelistDialog2/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597438290366" />
+    <state width="1876" height="161" key="GridCell.Tab.0.bottom" timestamp="1597438298864">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329412" />
-    <state width="1876" height="161" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597437840934" />
-    <state width="1876" height="161" key="GridCell.Tab.0.center" timestamp="1597437840934">
+    <state width="1876" height="161" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597438298864" />
+    <state width="1876" height="161" key="GridCell.Tab.0.center" timestamp="1597438298864">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329411" />
-    <state width="1876" height="161" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597437840934" />
-    <state width="1876" height="161" key="GridCell.Tab.0.left" timestamp="1597437840934">
+    <state width="1876" height="161" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597438298864" />
+    <state width="1876" height="161" key="GridCell.Tab.0.left" timestamp="1597438298864">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329411" />
-    <state width="1876" height="161" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597437840934" />
-    <state width="1876" height="161" key="GridCell.Tab.0.right" timestamp="1597437840934">
+    <state width="1876" height="161" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597438298864" />
+    <state width="1876" height="161" key="GridCell.Tab.0.right" timestamp="1597438298864">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329411" />
-    <state width="1876" height="161" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597437840934" />
+    <state width="1876" height="161" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597438298864" />
     <state width="1006" height="588" key="GridCell.Tab.1.bottom" timestamp="1597366506508">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
