@@ -27,7 +27,7 @@ object SiteWatcher {
                 newestBlog = newBlog
             }
         } catch (e: IOException) {
-            Admin.error("Connection to Hytale Server failed", e)
+            Admin.error("Connection to Hytale Server failed", e.message ?: e.localizedMessage)
 
             return false
         }
