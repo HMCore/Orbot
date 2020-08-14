@@ -11,11 +11,11 @@ fun main() {
     val builder = JDABuilder.createLight(
         Admin.token,
         GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
-        .addEventListeners(Bot())
         .setActivity(Activity.watching("for new Blogposts"))
         .build()
 
     builder.addEventListener(Cli())
+    builder.addEventListener(ErrorHandler())
     builder.awaitReady()
 
     Channels.jda = builder

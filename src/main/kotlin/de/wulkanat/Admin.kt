@@ -4,16 +4,32 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
+import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
-import java.sql.Time
-import java.util.concurrent.TimeUnit
 
 object Admin {
     val userId: Long
     val token: String
     val updateMs: Long
+
+    var testModeEnabled: Boolean = false
+    set(value) {
+        if (field == value)
+            return
+
+        field = value
+
+        if (value) {
+            jda?.presence?.setPresence(Activity.of(Activity.ActivityType.DEFAULT, "Testing mode, hold on..."), true)
+        } else {
+            jda?.presence?.setPresence(Activity.watching("for new Blogposts"), false)
+        }
+
+        Channels.channels = Channels.refreshFromDisk()
+        Admin.info()
+    }
 
     init {
         val admin = Json(JsonConfiguration.Stable).parse(AdminFile.serializer(), ADMIN_FILE.readText())
@@ -55,14 +71,14 @@ object Admin {
         )
     }
 
-    fun error(msg: String, error: Exception) {
+    fun error(msg: String, error: String) {
         sendDevMessage(
             EmbedBuilder()
                 .setTitle(msg)
-                .setDescription(error.message)
+                .setDescription(error)
                 .setColor(Color.RED)
                 .build()
-            , "$msg\n\n${error.message}"
+            , "$msg\n\n${error}"
         )
     }
 

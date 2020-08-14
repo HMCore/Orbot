@@ -2,9 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/wulkanat.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Inaccessibles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/ErrorHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/extensions/Message.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Admin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Admin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Bot.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Channels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Channels.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Cli.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Cli.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/DataIO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/DataIO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/web/SiteWatcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/web/SiteWatcher.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,9 +97,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin File" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Object" />
+        <option value="Kotlin File" />
+        <option value="Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -103,6 +116,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -112,13 +127,16 @@
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="de.wulkanat" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\src\main\kotlin\de\wulkanat" />
       <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot" />
+      <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\src\main\kotlin\de\wulkanat" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.HytaleUpdateBot [fatJar]">
-    <configuration name="HytaleUpdateBot [fatJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Kotlin.MainKt">
+    <configuration name="HytaleUpdateBot [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -129,7 +147,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="fatJar" />
+            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -137,7 +155,7 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="HytaleUpdateBot [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="HytaleUpdateBot [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -148,7 +166,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="jar" />
+            <option value="clean" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -160,21 +178,30 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/HytaleUpdateBot-1.0-SNAPSHOT-all.jar" />
       <method v="2" />
     </configuration>
-    <configuration name="HytaleUpdateBot-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/HytaleUpdateBot-1.0-SNAPSHOT.jar" />
-      <method v="2" />
-    </configuration>
     <configuration name="HytaleUpdateBot-all-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/HytaleUpdateBot-all-1.0-SNAPSHOT.jar" />
       <method v="2" />
     </configuration>
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <module name="HytaleUpdateBot.main" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="de.wulkanat.MainKt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Gradle.HytaleUpdateBot [build]" />
+        <item itemvalue="Gradle.HytaleUpdateBot [clean]" />
         <item itemvalue="JAR Application.HytaleUpdateBot-all-1.0-SNAPSHOT.jar" />
         <item itemvalue="JAR Application.HytaleUpdateBot-1.0-SNAPSHOT-all.jar" />
-        <item itemvalue="Gradle.HytaleUpdateBot [fatJar]" />
-        <item itemvalue="JAR Application.HytaleUpdateBot-1.0-SNAPSHOT.jar" />
-        <item itemvalue="Gradle.HytaleUpdateBot [jar]" />
       </list>
     </recent_temporary>
   </component>
@@ -192,10 +219,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="179" key="#Project_Structure" timestamp="1597338262424">
+    <state x="552" y="179" key="#Project_Structure" timestamp="1597434105164">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="179" key="#Project_Structure/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597338262424" />
+    <state x="552" y="179" key="#Project_Structure/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597434105164" />
     <state x="-1050" y="581" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597352463714">
       <screen x="-1050" y="105" width="1050" height="1640" />
     </state>
@@ -204,6 +231,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="633" y="446" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597362173063" />
+    <state x="690" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597428556346">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597428556346" />
     <state x="739" y="173" width="484" height="693" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1597362199927">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -212,46 +243,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="128" y="270" width="490" height="591" key="#xdebugger.evaluate/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597332665464" />
-    <state width="1876" height="161" key="GridCell.Tab.0.bottom" timestamp="1597364285629">
+    <state width="1876" height="161" key="GridCell.Tab.0.bottom" timestamp="1597437716576">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329412" />
-    <state width="1876" height="161" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597364285629" />
-    <state width="1876" height="161" key="GridCell.Tab.0.center" timestamp="1597364285629">
+    <state width="1876" height="161" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597437716576" />
+    <state width="1876" height="161" key="GridCell.Tab.0.center" timestamp="1597437716576">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329411" />
-    <state width="1876" height="161" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597364285629" />
-    <state width="1876" height="161" key="GridCell.Tab.0.left" timestamp="1597364285629">
+    <state width="1876" height="161" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597437716576" />
+    <state width="1876" height="161" key="GridCell.Tab.0.left" timestamp="1597437716575">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329411" />
-    <state width="1876" height="161" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597364285629" />
-    <state width="1876" height="161" key="GridCell.Tab.0.right" timestamp="1597364285629">
+    <state width="1876" height="161" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597437716575" />
+    <state width="1876" height="161" key="GridCell.Tab.0.right" timestamp="1597437716576">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329411" />
-    <state width="1876" height="161" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597364285629" />
-    <state width="1006" height="588" key="GridCell.Tab.1.bottom" timestamp="1597351329412">
-      <screen x="-1050" y="105" width="1050" height="1640" />
+    <state width="1876" height="161" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597437716576" />
+    <state width="1006" height="588" key="GridCell.Tab.1.bottom" timestamp="1597366506508">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329412" />
-    <state width="1876" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597339868293" />
-    <state width="1006" height="588" key="GridCell.Tab.1.center" timestamp="1597351329412">
-      <screen x="-1050" y="105" width="1050" height="1640" />
+    <state width="1006" height="588" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597366506508" />
+    <state width="1006" height="588" key="GridCell.Tab.1.center" timestamp="1597366506506">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.1.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329412" />
-    <state width="1876" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597339868293" />
-    <state width="1006" height="588" key="GridCell.Tab.1.left" timestamp="1597351329412">
-      <screen x="-1050" y="105" width="1050" height="1640" />
+    <state width="1006" height="588" key="GridCell.Tab.1.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597366506506" />
+    <state width="1006" height="588" key="GridCell.Tab.1.left" timestamp="1597366506505">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.1.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329412" />
-    <state width="1876" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597339868293" />
-    <state width="1006" height="588" key="GridCell.Tab.1.right" timestamp="1597351329412">
-      <screen x="-1050" y="105" width="1050" height="1640" />
+    <state width="1006" height="588" key="GridCell.Tab.1.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597366506505" />
+    <state width="1006" height="588" key="GridCell.Tab.1.right" timestamp="1597366506507">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.1.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329412" />
-    <state width="1876" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597339868293" />
+    <state width="1006" height="588" key="GridCell.Tab.1.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597366506507" />
     <state x="94" y="257" key="SettingsEditor" timestamp="1597361509050">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

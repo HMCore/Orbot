@@ -1,5 +1,6 @@
 package de.wulkanat
 
+import de.wulkanat.extensions.crosspost
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.list
@@ -15,8 +16,7 @@ object Channels {
     /**
      * List of (ServerID, ChannelID)
      */
-    val channels: MutableList<DiscordChannel> =
-        json.parse(DiscordChannel.serializer().list, SERVERS_FILE.readText()).toMutableList()
+    var channels: MutableList<DiscordChannel> = refreshFromDisk()
 
     fun sentToAll(messageEmbed: MessageEmbed) {
         if (jda == null)
@@ -33,7 +33,11 @@ object Channels {
                 }
                 channel.sendMessage(message).queue()
             }
-            channel.sendMessage(messageEmbed).queue()
+            channel.sendMessage(messageEmbed).queue {
+                if (channel_pair.autoPublish) {
+                    it.crosspost().queue()
+                }
+            }
         }
     }
 
@@ -52,6 +56,16 @@ object Channels {
         }
     }
 
+    fun refreshFromDisk(): MutableList<DiscordChannel> {
+        return json.parse(
+            DiscordChannel.serializer().list, (if (Admin.testModeEnabled) {
+                TEST_FILE
+            } else {
+                SERVERS_FILE
+            }).readText()
+        ).toMutableList()
+    }
+
     fun getServerNames(): List<String> {
         if (jda == null)
             return listOf()
@@ -63,12 +77,10 @@ object Channels {
                 return@map "**${it.id}** *(inactive)*"
             }
 
-            val role = if (it.mentionedRole == null) {
-                ""
-            } else if (it.mentionedRole == "everyone") {
-                " @everyone"
-            } else {
-                " @${channel.guild.getRoleById(it.mentionedRole)?.name}"
+            val role = when (it.mentionedRole) {
+                null -> ""
+                "everyone" -> " @everyone"
+                else -> " @${channel.guild.getRoleById(it.mentionedRole)?.name}"
             }
             "**${channel.guild.name}**\n#${channel.name}${role}"
         }
@@ -88,6 +100,7 @@ object Channels {
             json.stringify(
                 DiscordChannel.serializer().list,
                 channels
-            ))
+            )
+        )
     }
 }
