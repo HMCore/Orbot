@@ -25,7 +25,9 @@ fun main() {
     Runtime.getRuntime().addShutdownHook(object : Thread() {
         override fun run() {
             println("Shutting down...")
-            Admin.printlnBlocking("Shutting down")
+            println("Sending shutdown notice to Admin, waiting 5s...")
+            Admin.println("Shutting down")
+            sleep(5000)
         }
     })
 

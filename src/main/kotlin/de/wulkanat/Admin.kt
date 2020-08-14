@@ -7,6 +7,8 @@ import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
+import java.sql.Time
+import java.util.concurrent.TimeUnit
 
 object Admin {
     val userId: Long
@@ -101,14 +103,14 @@ object Admin {
     }
 
     private fun senDevMessageBlocking(messageEmbed: MessageEmbed, fallback: String) {
+        admin = jda!!.retrieveUserById(userId).complete()
         val devChannel = admin?.openPrivateChannel() ?: kotlin.run {
             kotlin.io.println(fallback)
             return
         }
 
-        devChannel.queue {
-            it.sendMessage(messageEmbed).complete()
-        }
+        devChannel.complete()
+            .sendMessage(messageEmbed).complete()
     }
 
     private fun sendDevMessage(messageEmbed: MessageEmbed, fallback: String) {
