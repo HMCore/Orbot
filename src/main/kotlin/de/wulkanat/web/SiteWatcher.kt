@@ -10,8 +10,6 @@ object SiteWatcher {
     var newestBlog: BlogPostPreview? = null
 
     fun hasNewBlogPost(): Boolean {
-        Admin.silent("Updating...")
-
         try {
             val doc = Jsoup.connect(BLOG_INDEX_URL).get()
             val newBlog = BlogPostParser.getFistBlog(doc)

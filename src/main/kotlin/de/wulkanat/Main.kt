@@ -13,8 +13,9 @@ fun main() {
         .setActivity(Activity.watching("for new Blogposts"))
         .build()
 
-    builder.addEventListener(Cli())
+    builder.addEventListener(AdminCli())
     builder.addEventListener(ErrorHandler())
+    builder.addEventListener(OwnerCli())
     builder.awaitReady()
 
     Channels.jda = builder

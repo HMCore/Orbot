@@ -8,7 +8,7 @@ import net.dv8tion.jda.api.events.ExceptionEvent
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent
 import kotlin.system.exitProcess
 
-class Cli : ListenerAdapter() {
+class AdminCli : ListenerAdapter() {
     override fun onPrivateMessageReceived(event: PrivateMessageReceivedEvent) {
         val msg = event.message.contentRaw
         if (event.author.idLong != Admin.userId ||

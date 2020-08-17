@@ -49,7 +49,7 @@ object Admin {
             kotlin.io.println("Connected to ${admin!!.name}. No further errors will be printed here.")
         }
     }
-    private var admin: User? = null
+    var admin: User? = null
 
     fun println(msg: String) {
         sendDevMessage(
