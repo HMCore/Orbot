@@ -1,8 +1,14 @@
 # BlogShot
 A bot that automatically polls the newest blogpost from [Hytale News Tab](https://www.hytale.com/news) and posts a message into servers if there is a new one.
-## Setup
-Okay, this isn't really meant for you to setup, if you want it though it first is easier to just dm me on Twitter [@tale_talk](https://twitter.com/tale_talk) so I can add you to the server list.
-If you *really* want to set it up yourself, fine.
+## Add to your server
+Click [this](https://discord.com/api/oauth2/authorize?client_id=743447329901641799&permissions=150528&scope=bot) link to invite
+the bot to your server. Please note that only people with *Administrator* permission will be able to
+configure it.
+
+You can type `%!info` to get an overview over all available commands.
+
+## Self Hosting
+Okay, this isn't really meant for you to setup, but if you *really* want to set it up yourself, fine.
 * first go to the release tab, download the jar, and put it in a folder
 * Add two files in the root of the repo, an `admin.json` and a `servers.json`.
 Add your Discord ID (not name), Bot token, and update frequency to the `admin.json`:

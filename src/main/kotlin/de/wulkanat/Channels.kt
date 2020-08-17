@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.TextChannel
+import net.dv8tion.jda.api.exceptions.ErrorResponseException
 
 object Channels {
     var jda: JDA? = null
@@ -23,20 +24,24 @@ object Channels {
             return
 
         for (channel_pair in channels) {
-            val channel = jda!!.getTextChannelById(channel_pair.id) ?: continue
+            try {
+                val channel = jda!!.getTextChannelById(channel_pair.id) ?: continue
 
-            if (channel_pair.mentionedRole != null) {
-                val message = if (channel_pair.mentionedRole == "everyone") {
-                    "New Blogpost @everyone"
-                } else {
-                    "New Blogpost <@&${channel_pair.mentionedRole}>"
+                if (channel_pair.mentionedRole != null) {
+                    val message = if (channel_pair.mentionedRole == "everyone") {
+                        "New Blogpost @everyone"
+                    } else {
+                        "New Blogpost <@&${channel_pair.mentionedRole}>"
+                    }
+                    channel.sendMessage(message).queue()
                 }
-                channel.sendMessage(message).queue()
-            }
-            channel.sendMessage(messageEmbed).queue {
-                if (channel_pair.autoPublish) {
-                    it.crosspost().queue()
+                channel.sendMessage(messageEmbed).queue {
+                    if (channel_pair.autoPublish) {
+                        it.crosspost().queue()
+                    }
                 }
+            } catch (e: ErrorResponseException) {
+                Admin.error("Error in server", e.message ?: e.localizedMessage)
             }
         }
     }
@@ -66,11 +71,11 @@ object Channels {
         ).toMutableList()
     }
 
-    fun getServerNames(): List<String> {
+    fun getServerNames(server: Long? = null): List<String> {
         if (jda == null)
             return listOf()
 
-        return channels.map {
+        return channels.filter { server == null || (jda!!.getTextChannelById(it.id)?.guild?.idLong == server) }.map {
             val channel = jda!!.getTextChannelById(it.id)
             if (channel == null) {
                 Admin.warning("Channel ${it.id} is no longer active!")
@@ -80,7 +85,7 @@ object Channels {
             val role = when (it.mentionedRole) {
                 null -> ""
                 "everyone" -> " @everyone"
-                else -> " @${channel.guild.getRoleById(it.mentionedRole)?.name}"
+                else -> " @${channel.guild.getRoleById(it.mentionedRole ?: "")?.name}"
             }
             "**${channel.guild.name}**\n#${channel.name}${role}"
         }
@@ -90,12 +95,17 @@ object Channels {
         return jda?.getTextChannelById(id)
     }
 
-    fun addChannel(id: Long, role: String?) {
-        channels.add(DiscordChannel(id, role))
+    fun addChannel(id: Long, role: String?): DiscordChannel? {
+        if (channels.find { it.id == id } != null) {
+            return null
+        }
+        val out = DiscordChannel(id, role)
+        channels.add(out)
         saveChannels()
+        return out
     }
 
-    private fun saveChannels() {
+    fun saveChannels() {
         SERVERS_FILE.writeText(
             json.stringify(
                 DiscordChannel.serializer().list,

@@ -49,7 +49,7 @@ object Admin {
             kotlin.io.println("Connected to ${admin!!.name}. No further errors will be printed here.")
         }
     }
-    private var admin: User? = null
+    var admin: User? = null
 
     fun println(msg: String) {
         sendDevMessage(
@@ -71,12 +71,19 @@ object Admin {
         )
     }
 
-    fun error(msg: String, error: String) {
+    fun error(msg: String, error: String, author: User? = null) {
         sendDevMessage(
             EmbedBuilder()
                 .setTitle(msg)
                 .setDescription(error)
                 .setColor(Color.RED)
+                .run {
+                    if (author == null) {
+                        this
+                    } else {
+                        this.setAuthor(author.asTag, author.avatarUrl, author.avatarUrl)
+                    }
+                }
                 .build()
             , "$msg\n\n${error}"
         )
