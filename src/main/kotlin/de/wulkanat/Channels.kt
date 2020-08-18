@@ -26,14 +26,25 @@ object Channels {
         for (channel_pair in channels) {
             try {
                 val channel = jda!!.getTextChannelById(channel_pair.id) ?: continue
+                val customMessage = channel_pair.message?.message ?: ""
 
                 if (channel_pair.mentionedRole != null) {
                     val message = if (channel_pair.mentionedRole == "everyone") {
-                        "New Blogpost @everyone"
+                        "@everyone $customMessage"
                     } else {
-                        "New Blogpost <@&${channel_pair.mentionedRole}>"
+                        "<@&${channel_pair.mentionedRole}> $customMessage"
                     }
-                    channel.sendMessage(message).queue()
+                    channel.sendMessage(message).queue {
+                        if (channel_pair.message?.pushAnnouncement == true) {
+                            it.crosspost().queue()
+                        }
+                    }
+                } else if (channel_pair.message != null) {
+                    channel.sendMessage(customMessage).queue {
+                        if (channel_pair.message?.pushAnnouncement == true) {
+                            it.crosspost().queue()
+                        }
+                    }
                 }
                 channel.sendMessage(messageEmbed).queue {
                     if (channel_pair.autoPublish) {
@@ -87,7 +98,13 @@ object Channels {
                 "everyone" -> " @everyone"
                 else -> " @${channel.guild.getRoleById(it.mentionedRole ?: "")?.name}"
             }
-            "**${channel.guild.name}**\n#${channel.name}${role}"
+            val publish = if (it.autoPublish) " (publish)" else ""
+            "**${channel.guild.name}**\n#${channel.name}${role}${publish}${if (it.message == null) {
+                ""
+            } else {
+                "\n*${it.message!!.message}*${if (it.message!!.pushAnnouncement) " (publish)" else ""}"
+            }
+            }"
         }
     }
 

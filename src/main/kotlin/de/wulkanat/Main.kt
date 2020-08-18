@@ -10,7 +10,7 @@ fun main() {
     val builder = JDABuilder.createLight(
         Admin.token,
         GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
-        .setActivity(Activity.watching("for new Blogposts"))
+        .setActivity(Activity.watching(Admin.message))
         .build()
 
     builder.addEventListener(AdminCli())

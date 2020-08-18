@@ -50,7 +50,7 @@ class OwnerCli : ListenerAdapter() {
                         event.message.channel.sendMessage("Usage: `${prefix}publish [on|off]`")
                     }
                 } else {
-                    event.message.channel.sendMessage("Added.").queue()
+                    event.message.channel.sendMessage("Channel not registered.").queue()
                 }
             }
             "ping" -> {
@@ -84,31 +84,80 @@ class OwnerCli : ListenerAdapter() {
                     event.message.channel.sendMessage("Channel is not registered.").queue()
                 }
             }
+            "setMessage" -> {
+                val result = Channels.channels.find { it.id == channelId }
+                if (result != null) {
+                    if (command.size > 1) {
+                        val message = event.message.contentRaw.removePrefix("${prefix}setMessage").trim()
+                        result.message = CustomMessage(message)
+                        Channels.saveChannels()
+                        event.message.channel.sendMessage("Set `$message` as message.").queue()
+                    } else {
+                        event.message.channel.sendMessage("Usage: `${prefix}setMessage [message]`")
+                    }
+                } else {
+                    event.message.channel.sendMessage("Channel is not registered.").queue()
+                }
+            }
+            "resetMessage" -> {
+                val result = Channels.channels.find { it.id == channelId }
+                if (result != null) {
+                    result.message = null
+                    Channels.saveChannels()
+                    event.message.channel.sendMessage("Reset to no message.").queue()
+                } else {
+                    event.message.channel.sendMessage("Channel is not registered.").queue()
+                }
+            }
+            "publishMessage" -> {
+                val result = Channels.channels.find { it.id == channelId }
+                if (result != null) {
+                    if (result.message != null) {
+                        if (command.size > 1 && listOf("on", "off").contains(command[1])) {
+                            result.message?.pushAnnouncement = command[1] == "on"
+                            Channels.saveChannels()
+
+                            event.message.channel.sendMessage("Auto publish (message) is now ${command[1]}").queue()
+                        } else {
+                            event.message.channel.sendMessage("Usage: `${prefix}publishMessage [on|off]`")
+                        }
+                    } else {
+                        event.message.channel.sendMessage("Channel has no custom message.").queue()
+                    }
+                } else {
+                    event.message.channel.sendMessage("Channel not registered.").queue()
+                }
+            }
             "info" -> {
-                event.message.channel.sendMessage(EmbedBuilder()
-                    .setTitle("Server overview")
-                    .setColor(Color.GREEN)
-                    .setDescription(Channels.getServerNames(event.message.guild.idLong).joinToString("\n"))
-                    .setAuthor(Admin.admin?.name, Admin.admin?.avatarUrl, Admin.admin?.avatarUrl)
-                    .build()).queue()
+                event.message.channel.sendMessage(
+                    EmbedBuilder()
+                        .setTitle("Server overview")
+                        .setColor(Color.GREEN)
+                        .setDescription(Channels.getServerNames(event.message.guild.idLong).joinToString("\n"))
+                        .setAuthor(Admin.admin?.name, Admin.admin?.avatarUrl, Admin.admin?.avatarUrl)
+                        .build()
+                ).queue()
             }
             "report" -> {
                 val errorReport = event.message.contentRaw.removePrefix("${prefix}report")
                 Admin.error(event.message.guild.name, errorReport, event.author)
-                event.message.channel.sendMessage(EmbedBuilder()
-                    .setTitle("Error Report Received")
-                    .setColor(Color.RED)
-                    .setDescription(errorReport)
-                    .setAuthor(Admin.admin?.name, Admin.admin?.avatarUrl, Admin.admin?.avatarUrl)
-                    .build()).queue()
+                event.message.channel.sendMessage(
+                    EmbedBuilder()
+                        .setTitle("Error Report Received")
+                        .setColor(Color.RED)
+                        .setDescription(errorReport)
+                        .setAuthor(Admin.admin?.name, Admin.admin?.avatarUrl, Admin.admin?.avatarUrl)
+                        .build()
+                ).queue()
             }
             "help" -> {
-                event.message.channel.sendMessage(EmbedBuilder()
-                    .setTitle("Help")
-                    .setColor(Color.YELLOW)
-                    .setAuthor(Admin.admin?.name, Admin.admin?.avatarUrl, Admin.admin?.avatarUrl)
-                    .setDescription(
-                        """
+                event.message.channel.sendMessage(
+                    EmbedBuilder()
+                        .setTitle("Help")
+                        .setColor(Color.YELLOW)
+                        .setAuthor(Admin.admin?.name, Admin.admin?.avatarUrl, Admin.admin?.avatarUrl)
+                        .setDescription(
+                            """
                             **${prefix}add**
                             Add this channel to the notified list
                             **${prefix}remove**
@@ -117,14 +166,20 @@ class OwnerCli : ListenerAdapter() {
                             [Community|Partner|Verified only] Auto publish the message if in an announcement channel
                             **${prefix}ping [none|everyone|roleName]**
                             What role to ping
+                            **${prefix}setMessage [message]**
+                            Set a custom message to show
+                            **${prefix}resetMessage**
+                            Reset the message
                             **${prefix}info**
                             Show an overview about all channels registered on this server
                             **${prefix}report**
                             Report an issue to the Bot Admin (this will share your user name so they can contact you)
                             **${prefix}help**
                             Show this message
-                        """.trimIndent())
-                    .build()).queue()
+                        """.trimIndent()
+                        )
+                        .build()
+                ).queue()
             }
         }
     }

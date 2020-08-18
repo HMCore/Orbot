@@ -13,6 +13,7 @@ object Admin {
     val userId: Long
     val token: String
     val updateMs: Long
+    val message: String
 
     var testModeEnabled: Boolean = false
     set(value) {
@@ -36,6 +37,7 @@ object Admin {
         userId = admin.adminId
         token = admin.token
         updateMs = admin.updateMs
+        message = admin.watchingMessage
     }
 
     var jda: JDA? = null

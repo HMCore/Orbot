@@ -16,7 +16,8 @@ Add your Discord ID (not name), Bot token, and update frequency to the `admin.js
 {
   "adminId": 12345678910,
   "token": "AOGH@(AKnjsfjiJijaig3ijgG92jaij",
-  "updateMs":30000
+  "updateMs": 30000,
+  "watchingMessage": "for new Blogposts"
 }
 ```
 * add your servers to `servers.json`
@@ -25,17 +26,20 @@ Add your Discord ID (not name), Bot token, and update frequency to the `admin.js
   {
     "id": 15050067772322222,
     "mentionedRole": "everyone",
-    "autoPublish":true
+    "autoPublish": true,
+    "message": null
   },
   {
     "id": 74050067772325222,
     "mentionedRole": null,
-    "autoPublish":false
+    "autoPublish":false,
+    "message": null
   },
   {
     "id": 74050067772325222,
     "mentionedRole": "74036067771625222",
-    "autoPublish":false
+    "autoPublish":false,
+    "message": null
   }
 ]
 ```
