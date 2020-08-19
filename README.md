@@ -6,85 +6,61 @@ the bot to your server. Please note that only people with *Administrator* permis
 configure it.
 
 You can type `%!info` to get an overview over all available commands.
+## Commands
+
+| **Command**      | **Arguments**                                          | **Info**                                                                                          |
+|------------------|--------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| %!add            |                                                        | Add current channel to the notified list                                                          |
+| %!remove         |                                                        | Remove current channel to the notified list                                                       |
+| %!publish        | on &#124; off                                              | [Community&#124;Partner&#124;Verified only] Auto publish the message if in an announcement channel        |
+| %!ping           | none &#124; everyone &#124; roleName                           | What role to ping                                                                                 |
+| %!setMessage     | message | Set a custom message when a blogpost arrives |  
+| %!resetMessage   |                                                        |  Reset the custom message to none                                                                 |
+| %!serviceChannel | add &#124; remove                                          | Add/remove channel from service notification list                                                 |
+| %!publishMessage | on &#124; off                                              | [Community&#124;Partner&#124;Verified only] Auto publish the custom message if in an announcement channel |
+| %!info           |                                                        | Show an overview about all channels registered on this server                                     |
+| %!report         | Your message                                           | Report an issue to the Bot Admin (this will share your user name so they can contact you)         |
+| %!help           |                                                        | Show a help dialog with all these commands                                                        |
 
 ## Self Hosting
 Okay, this isn't really meant for you to setup, but if you *really* want to set it up yourself, fine.
-* first go to the release tab, download the jar, and put it in a folder
-* Add two files in the root of the repo, an `admin.json` and a `servers.json`.
-Add your Discord ID (not name), Bot token, and update frequency to the `admin.json`:
-```json
-{
-  "adminId": 12345678910,
-  "token": "AOGH@(AKnjsfjiJijaig3ijgG92jaij",
-  "updateMs": 30000,
-  "watchingMessage": "for new Blogposts"
-}
-```
-* add your servers to `servers.json`
-```json
-[
-  {
-    "id": 15050067772322222,
-    "mentionedRole": "everyone",
-    "autoPublish": true,
-    "message": null
-  },
-  {
-    "id": 74050067772325222,
-    "mentionedRole": null,
-    "autoPublish":false,
-    "message": null
-  },
-  {
-    "id": 74050067772325222,
-    "mentionedRole": "74036067771625222",
-    "autoPublish":false,
-    "message": null
-  }
-]
-```
-* add a `test.json` with the same schema as the `server.json`. When
-you enable test mode, the servers from there will be used instead allowing
-you to test if it works.
+Go to the release tab, download the jar, and put it in a folder.
+
+Start the server with `java -jar [server-file-name]` If you put in everything correctly,
+the bot should message you on Discord.
+
+*Note:* You need to invite the bot into a server before it can message you.
+
+Run it once (it should crash or print an error), so `admin.json`, `servers.json` and `service_channels.json`
+are being created.
+Add your Discord ID `adminId` (not name), Bot token `token`, and update frequency `updateMs` to the `admin.json`,
+optionally you can add your own messages for when the bot is looking and when it can't reach Hytale Servers.
+
+If you verified that everything works correctly, you can start the server in the background, on Linux that is
+`nohup java -jar [server-file-name]`. To stop it you can either type `!stop` in the Admin Console (Discord PM) or
+if the bot is unresponsive the the PID of it through `ps -ef` and `kill [pid]`
+
 
 ## Compiling yourself
 I developed it under Windows, and had some trouble compiling it on Linux. You mileage may vary.
 
 ## Admin commands
 
-Start the server with `java -jar [server-file-name]` If you put in everything correctly, the bot should message you on Discord.
-### Adding Servers
-Please edit the JSON file.
-You can force an update by calling 
-```
-%!refreshList
-```
-### Testing
-Switching between test and production files
-```
-%!testMode
-%!fakeUpdate
-```
-```
-%!productionMode
-```
-**WARNING**: Initiating a fake update is not being cancelled by switching
-to production.
-### Stop the server from within Discord
-```
-%!stop
-```
-### Show servers, channels and roles
-```
-%!info
-```
+| **Command**      | **Arguments**     | **Info**     |
+|------------------|-------|---------------------|
+| !info            |   | Show all registered channels and servers.  |
+| !stop | | Stop the server (useful when running in `nohup`) |
+| !serviceMessage | message | Send a service message to all registered channels |
+| !fakeUpdate | | Cause a fake update (**WARNING**: This will show on **ALL** registered servers) |
+| !refreshList | | Refresh servers and service channels from disk (if you manually edit the JSON files) |
 
-These commands will work in every channel, but will be ignored if they don't come from you, however the bot will always respond in a private message.
-It will also print errors directly in a Discord private message.
+These commands will only work by private messaging the bot (and will be ignored if they don't
+come from the admin registered in the `admin.json`.
 
 ## TODO
 
-Mainly reaction roles for convenience, self setup on invite to server, Twitter integration.
+Mainly reaction roles for convenience, Twitter integration to either be even faster or to brag how much faster
+we were over the official Hytale Twitter.
 
 ## Other
 

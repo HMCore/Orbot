@@ -1,6 +1,6 @@
 servers.json
 admin.json
-test.json
+service_channels.json
 *.hprof
 /build
 /.gradle

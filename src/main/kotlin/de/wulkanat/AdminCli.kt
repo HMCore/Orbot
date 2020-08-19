@@ -1,10 +1,8 @@
 package de.wulkanat
 
 import de.wulkanat.model.BlogPostPreview
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import de.wulkanat.web.SiteWatcher
-import net.dv8tion.jda.api.events.ExceptionEvent
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent
 import kotlin.system.exitProcess
 
@@ -16,9 +14,9 @@ class AdminCli : ListenerAdapter() {
         ) {
             return
         }
-        val command = msg.removePrefix("!").split(Regex("\\s+"))
+        val command = Regex("[^\\s`]+|`[^`]*`").findAll(msg.removePrefix("!")).toList()
 
-        when (command[0]) {
+        when (command[0].value) {
             "stop" -> exitProcess(1)
             "fakeUpdate" -> {
                 SiteWatcher.newestBlog = BlogPostPreview(
@@ -35,15 +33,17 @@ class AdminCli : ListenerAdapter() {
             "info" -> {
                 Admin.info()
             }
+            "serviceMessage" -> {
+                if (command.size != 3) {
+                    Admin.println("Enclose message and title in backticks (`)")
+                } else {
+                    Channels.sendServiceMessage(command[1].value.trim('`'), command[2].value.trim('`'))
+                }
+            }
             "refreshList" -> {
-                Channels.channels = Channels.refreshFromDisk()
+                Channels.channels = Channels.refreshChannelsFromDisk()
+                Channels.serviceChannels = Channels.refreshServiceChannelsFromDisk()
                 Admin.info()
-            }
-            "testMode" -> {
-                Admin.testModeEnabled = true
-            }
-            "productionMode" -> {
-                Admin.testModeEnabled = false
             }
         }
     }

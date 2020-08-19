@@ -4,20 +4,22 @@ import de.wulkanat.extensions.crosspost
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.list
+import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.TextChannel
 import net.dv8tion.jda.api.exceptions.ErrorResponseException
+import java.awt.Color
 
 object Channels {
     var jda: JDA? = null
-    val json = Json(JsonConfiguration.Stable)
 
     /**
      * List of (ServerID, ChannelID)
      */
-    var channels: MutableList<DiscordChannel> = refreshFromDisk()
+    var channels: MutableList<DiscordChannel> = refreshChannelsFromDisk()
+    var serviceChannels: MutableList<ServiceChannel> = refreshServiceChannelsFromDisk()
 
     fun sentToAll(messageEmbed: MessageEmbed) {
         if (jda == null)
@@ -57,6 +59,33 @@ object Channels {
         }
     }
 
+    fun sendServiceMessage(title: String, message: String) {
+        val serviceMessage = EmbedBuilder()
+            .setTitle(title)
+            .setDescription(message)
+            .setColor(Color.WHITE)
+            .setAuthor(Admin.admin?.name, Admin.admin?.avatarUrl, Admin.admin?.avatarUrl)
+            .setFooter("This was sent by a human.")
+            .build()
+
+        for (channelInfo in serviceChannels) {
+            val channel = jda!!.getTextChannelById(channelInfo.id)
+
+            channel?.sendMessage(serviceMessage)?.queue()
+        }
+
+        Admin.println("Service message distributed to ${serviceChannels.size} channels.")
+        Admin.sendDevMessage(serviceMessage, """
+            ***************
+            SERVICE MESSAGE
+            
+            $title
+            -------
+            $message
+            ***************
+        """.trimIndent())
+    }
+
     fun checkEveryonePermission() {
         for (channel_pair in channels) {
             val channel = jda!!.getTextChannelById(channel_pair.id) ?: continue
@@ -72,13 +101,15 @@ object Channels {
         }
     }
 
-    fun refreshFromDisk(): MutableList<DiscordChannel> {
+    fun refreshChannelsFromDisk(): MutableList<DiscordChannel> {
         return json.parse(
-            DiscordChannel.serializer().list, (if (Admin.testModeEnabled) {
-                TEST_FILE
-            } else {
-                SERVERS_FILE
-            }).readText()
+            DiscordChannel.serializer().list, (SERVERS_FILE).readText()
+        ).toMutableList()
+    }
+
+    fun refreshServiceChannelsFromDisk(): MutableList<ServiceChannel> {
+        return json.parse(
+            ServiceChannel.serializer().list, (SERVICE_CHANNELS_FILE).readText()
         ).toMutableList()
     }
 
@@ -99,12 +130,22 @@ object Channels {
                 else -> " @${channel.guild.getRoleById(it.mentionedRole ?: "")?.name}"
             }
             val publish = if (it.autoPublish) " (publish)" else ""
-            "**${channel.guild.name}**\n#${channel.name}${role}${publish}${if (it.message == null) {
+            "**${channel.guild.name}** #${channel.name}${role}${publish}${if (it.message == null) {
                 ""
             } else {
                 "\n*${it.message!!.message}*${if (it.message!!.pushAnnouncement) " (publish)" else ""}"
             }
             }"
+        }
+    }
+
+    fun getServiceChannelServers(server: Long? = null): List<String> {
+        if (jda == null)
+            return listOf()
+
+        return serviceChannels.filter { server == null || (jda!!.getTextChannelById(it.id)?.guild?.idLong == server) }.map {
+            val channel = jda!!.getTextChannelById(it.id)
+            "**${channel?.guild?.name ?: it.id}** #${channel?.name ?: "(inactive)"}"
         }
     }
 
@@ -127,6 +168,12 @@ object Channels {
             json.stringify(
                 DiscordChannel.serializer().list,
                 channels
+            )
+        )
+        SERVICE_CHANNELS_FILE.writeText(
+            json.stringify(
+                ServiceChannel.serializer().list,
+                serviceChannels
             )
         )
     }

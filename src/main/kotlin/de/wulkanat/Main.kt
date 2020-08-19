@@ -20,6 +20,7 @@ fun main() {
 
     Channels.jda = builder
     Admin.jda = builder
+    DiscordRpc.jda = builder
     Admin.info()
 
     Runtime.getRuntime().addShutdownHook(object : Thread() {

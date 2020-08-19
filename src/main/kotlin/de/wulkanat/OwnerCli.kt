@@ -109,6 +109,28 @@ class OwnerCli : ListenerAdapter() {
                     event.message.channel.sendMessage("Channel is not registered.").queue()
                 }
             }
+            "serviceChannel" -> {
+                if (command.size > 1 && listOf("add", "remove").contains(command[1])) {
+                    if (command[1] == "add") {
+                        if (Channels.serviceChannels.find { it.id == channelId } != null) {
+                            event.message.channel.sendMessage("Already a service channel.").queue()
+                        } else {
+                            Channels.serviceChannels.add(ServiceChannel(channelId))
+                            Channels.saveChannels()
+                            event.message.channel.sendMessage("Added as service channel.").queue()
+                        }
+                    } else {
+                        event.message.channel.sendMessage(
+                            if (Channels.serviceChannels.removeAll { it.id == channelId }) "Channel removed."
+                            else "Not a service channel."
+                        ).queue()
+                    }
+                    Channels.saveChannels()
+                } else {
+                    event.message.channel.sendMessage("Usage: `${prefix}serviceChannel [add|remove]`")
+                }
+
+            }
             "publishMessage" -> {
                 val result = Channels.channels.find { it.id == channelId }
                 if (result != null) {
@@ -133,7 +155,12 @@ class OwnerCli : ListenerAdapter() {
                     EmbedBuilder()
                         .setTitle("Server overview")
                         .setColor(Color.GREEN)
-                        .setDescription(Channels.getServerNames(event.message.guild.idLong).joinToString("\n"))
+                        .setDescription("""
+                            ${Channels.getServerNames(event.message.guild.idLong).joinToString("\n")}
+                                                
+                            **_Service Channels_**
+                            ${Channels.getServiceChannelServers(event.message.guild.idLong).joinToString("\n")}
+                        """.trimIndent())
                         .setAuthor(Admin.admin?.name, Admin.admin?.avatarUrl, Admin.admin?.avatarUrl)
                         .build()
                 ).queue()
@@ -160,6 +187,8 @@ class OwnerCli : ListenerAdapter() {
                             """
                             **${prefix}add**
                             Add this channel to the notified list
+                            **${prefix}serviceChannel [add|remove]**
+                            Add or remove this channel to receive service message from the bot developer (recommended)
                             **${prefix}remove**
                             Remove this channel to the notified list
                             **${prefix}publish [on|off]**

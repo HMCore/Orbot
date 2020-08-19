@@ -14,23 +14,7 @@ object Admin {
     val token: String
     val updateMs: Long
     val message: String
-
-    var testModeEnabled: Boolean = false
-    set(value) {
-        if (field == value)
-            return
-
-        field = value
-
-        if (value) {
-            jda?.presence?.setPresence(Activity.of(Activity.ActivityType.DEFAULT, "Testing mode, hold on..."), true)
-        } else {
-            jda?.presence?.setPresence(Activity.watching("for new Blogposts"), false)
-        }
-
-        Channels.channels = Channels.refreshFromDisk()
-        Admin.info()
-    }
+    val offlineMessage: String
 
     init {
         val admin = Json(JsonConfiguration.Stable).parse(AdminFile.serializer(), ADMIN_FILE.readText())
@@ -38,6 +22,7 @@ object Admin {
         token = admin.token
         updateMs = admin.updateMs
         message = admin.watchingMessage
+        offlineMessage = admin.offlineMessage
     }
 
     var jda: JDA? = null
@@ -116,7 +101,12 @@ object Admin {
         sendDevMessage(
             EmbedBuilder()
                 .setTitle("Now watching for new Hytale Blogposts every ${updateMs / 1000}s")
-                .setDescription(Channels.getServerNames().joinToString("\n"))
+                .setDescription("""
+                    ${Channels.getServerNames().joinToString("\n")}
+                    
+                    **_Service Channels_**
+                    ${Channels.getServiceChannelServers().joinToString("\n")}
+                """.trimIndent())
                 .setColor(Color.GREEN)
                 .build(),
             "Now watching for new Hytale BlogPosts"
@@ -138,7 +128,7 @@ object Admin {
             .sendMessage(messageEmbed).complete()
     }
 
-    private fun sendDevMessage(messageEmbed: MessageEmbed, fallback: String) {
+    fun sendDevMessage(messageEmbed: MessageEmbed, fallback: String) {
         val devChannel = admin?.openPrivateChannel() ?: kotlin.run {
             kotlin.io.println(fallback)
             return
