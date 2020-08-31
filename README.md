@@ -53,6 +53,8 @@ I developed it under Windows, and had some trouble compiling it on Linux. You mi
 | !serviceMessage | message | Send a service message to all registered channels |
 | !fakeUpdate | | Cause a fake update (**WARNING**: This will show on **ALL** registered servers) |
 | !refreshList | | Refresh servers and service channels from disk (if you manually edit the JSON files) |
+| !removeInactive | | Remove inactive channels |
+| !help | | Show a help dialog with all these commands |
 
 These commands will only work by private messaging the bot (and will be ignored if they don't
 come from the admin registered in the `admin.json`.

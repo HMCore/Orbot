@@ -1,15 +1,12 @@
 package de.wulkanat
 
 import de.wulkanat.extensions.crosspost
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.list
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.TextChannel
-import net.dv8tion.jda.api.exceptions.ErrorResponseException
 import java.awt.Color
 
 object Channels {
@@ -53,8 +50,8 @@ object Channels {
                         it.crosspost().queue()
                     }
                 }
-            } catch (e: ErrorResponseException) {
-                Admin.error("Error in server", e.message ?: e.localizedMessage)
+            } catch (e: Exception) {
+                Admin.error("Error in server ${channel_pair.id}", e.message ?: e.localizedMessage)
             }
         }
     }
