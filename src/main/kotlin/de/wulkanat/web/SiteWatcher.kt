@@ -34,7 +34,7 @@ object SiteWatcher {
             return false
         }
 
-        if (siteOnline) {
+        if (!siteOnline) {
             siteOnline = true
             DiscordRpc.updatePresence(siteOnline)
         }
