@@ -1,10 +1,8 @@
 package de.wulkanat
 
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
-import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
@@ -17,7 +15,10 @@ object Admin {
     val offlineMessage: String
 
     init {
-        val admin = Json(JsonConfiguration.Stable).parse(AdminFile.serializer(), ADMIN_FILE.readText())
+        val admin = Json { allowStructuredMapKeys = true }.decodeFromString(
+            AdminFile.serializer(),
+            ADMIN_FILE.readText()
+        )
         userId = admin.adminId
         token = admin.token
         updateMs = admin.updateMs

@@ -1,5 +1,6 @@
 servers.json
 admin.json
+twitter.json
 service_channels.json
 *.hprof
 /build

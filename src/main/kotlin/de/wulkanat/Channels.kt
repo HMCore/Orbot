@@ -1,7 +1,6 @@
 package de.wulkanat
 
-import de.wulkanat.extensions.crosspost
-import kotlinx.serialization.list
+import kotlinx.serialization.builtins.ListSerializer
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.Permission
@@ -99,14 +98,14 @@ object Channels {
     }
 
     fun refreshChannelsFromDisk(): MutableList<DiscordChannel> {
-        return json.parse(
-            DiscordChannel.serializer().list, (SERVERS_FILE).readText()
+        return json.decodeFromString(
+            ListSerializer(DiscordChannel.serializer()), (SERVERS_FILE).readText()
         ).toMutableList()
     }
 
     fun refreshServiceChannelsFromDisk(): MutableList<ServiceChannel> {
-        return json.parse(
-            ServiceChannel.serializer().list, (SERVICE_CHANNELS_FILE).readText()
+        return json.decodeFromString(
+            ListSerializer(ServiceChannel.serializer()), (SERVICE_CHANNELS_FILE).readText()
         ).toMutableList()
     }
 
@@ -162,14 +161,14 @@ object Channels {
 
     fun saveChannels() {
         SERVERS_FILE.writeText(
-            json.stringify(
-                DiscordChannel.serializer().list,
+            json.encodeToString(
+                ListSerializer(DiscordChannel.serializer()),
                 channels
             )
         )
         SERVICE_CHANNELS_FILE.writeText(
-            json.stringify(
-                ServiceChannel.serializer().list,
+            json.encodeToString(
+                ListSerializer(ServiceChannel.serializer()),
                 serviceChannels
             )
         )
