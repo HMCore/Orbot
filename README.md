@@ -37,9 +37,11 @@ Add your Discord ID `adminId` (not name), Bot token `token`, and update frequenc
 optionally you can add your own messages for when the bot is looking and when it can't reach Hytale Servers.
 
 If you verified that everything works correctly, you can start the server in the background, on Linux that is
-`nohup java -jar [server-file-name]`. To stop it you can either type `!stop` in the Admin Console (Discord PM) or
+`nohup java -Xmx1024m -jar [server-file-name]`. To stop it you can either type `!stop` in the Admin Console (Discord PM) or
 if the bot is unresponsive the the PID of it through `ps -ef` and `kill [pid]`
 
+I'm not 100% certain how much RAM the bot needs, default is typically `-Xmx256m`, and that lead to some issues, `-Xmx512m` is probably plenty, because my server has
+tons of unused ram I set it to `-Xmx2048m`, just try and look what works for you.
 
 ## Compiling yourself
 I developed it under Windows, and had some trouble compiling it on Linux. You mileage may vary.
