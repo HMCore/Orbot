@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="fix crash on missing permission&#10;add removeInactive command">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/web/SiteWatcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/web/SiteWatcher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/OwnerCli.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/OwnerCli.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +30,11 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="HytaleUpdateBot" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="HytaleUpdateBot" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
             </expand>
             <select />
@@ -61,6 +64,9 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/build.gradle" root0="SKIP_INSPECTION" />
   </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="5kk4ojxu" />
+  </component>
   <component name="ProjectId" id="1g2oQiuUv1Bu6ZCW2NSVzB1V6Sc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -70,23 +76,24 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/build/libs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/cli" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot" />
+      <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\src\main\kotlin\de\wulkanat" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="de.wulkanat" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\src\main\kotlin\de\wulkanat\cli" />
       <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\build\libs" />
       <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\src" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot" />
-      <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\src\main\kotlin\de\wulkanat" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.HytaleUpdateBot [fatJar]">
@@ -106,7 +113,9 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration name="HytaleUpdateBot [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -125,7 +134,9 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration name="HytaleUpdateBot [fatJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -144,7 +155,9 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration name="HytaleUpdateBot-all-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
@@ -166,14 +179,15 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.MainKt" />
-        <item itemvalue="Gradle.HytaleUpdateBot [fatJar]" />
-        <item itemvalue="Gradle.HytaleUpdateBot [build]" />
-        <item itemvalue="Gradle.HytaleUpdateBot [clean]" />
+        <item itemvalue="Application.MainKt" />
         <item itemvalue="JAR Application.HytaleUpdateBot-all-1.0-SNAPSHOT.jar" />
+        <item itemvalue="Gradle.HytaleUpdateBot [fatJar]" />
+        <item itemvalue="Gradle.HytaleUpdateBot [clean]" />
+        <item itemvalue="Gradle.HytaleUpdateBot [build]" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -220,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601042375685</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix connection failed message not disappearing">
+      <created>1601042672099</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1601042672099</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -229,13 +250,14 @@
     <MESSAGE value="Add service announcement channel" />
     <MESSAGE value="fix crash on missing permission&#10;add removeInactive command" />
     <MESSAGE value="prepare twitter integration" />
-    <option name="LAST_COMMIT_MESSAGE" value="prepare twitter integration" />
+    <MESSAGE value="fix connection failed message not disappearing" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix connection failed message not disappearing" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="179" key="#Project_Structure" timestamp="1597687666334">
+    <state x="552" y="179" key="#Project_Structure" timestamp="1601148661909">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="179" key="#Project_Structure/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597687666334" />
+    <state x="552" y="179" key="#Project_Structure/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1601148661909" />
     <state x="-1050" y="581" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597352463714">
       <screen x="-1050" y="105" width="1050" height="1640" />
     </state>
@@ -260,34 +282,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="128" y="270" width="490" height="591" key="#xdebugger.evaluate/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597332665464" />
-    <state x="569" y="115" key="CommitChangelistDialog2" timestamp="1598896749015">
+    <state x="569" y="115" key="CommitChangelistDialog2" timestamp="1601042670025">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="569" y="115" key="CommitChangelistDialog2/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1598896749015" />
+    <state x="569" y="115" key="CommitChangelistDialog2/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1601042670025" />
     <state x="740" y="238" key="FileChooserDialogImpl" timestamp="1597605616287">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="238" key="FileChooserDialogImpl/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597605616287" />
-    <state width="1876" height="161" key="GridCell.Tab.0.bottom" timestamp="1598896802046">
+    <state width="1877" height="161" key="GridCell.Tab.0.bottom" timestamp="1601059408217">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329412" />
-    <state width="1876" height="161" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1598896802046" />
-    <state width="1876" height="161" key="GridCell.Tab.0.center" timestamp="1598896802046">
+    <state width="1877" height="161" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1601059408217" />
+    <state width="1877" height="161" key="GridCell.Tab.0.center" timestamp="1601059408216">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329411" />
-    <state width="1876" height="161" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1598896802046" />
-    <state width="1876" height="161" key="GridCell.Tab.0.left" timestamp="1598896802046">
+    <state width="1877" height="161" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1601059408216" />
+    <state width="1877" height="161" key="GridCell.Tab.0.left" timestamp="1601059408216">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329411" />
-    <state width="1876" height="161" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1598896802046" />
-    <state width="1876" height="161" key="GridCell.Tab.0.right" timestamp="1598896802046">
+    <state width="1877" height="161" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1601059408216" />
+    <state width="1877" height="161" key="GridCell.Tab.0.right" timestamp="1601059408216">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1006" height="588" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329411" />
-    <state width="1876" height="161" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1598896802046" />
+    <state width="1877" height="161" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1601059408216" />
     <state width="1876" height="348" key="GridCell.Tab.1.bottom" timestamp="1597840755247">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -308,6 +330,10 @@
     </state>
     <state width="1006" height="588" key="GridCell.Tab.1.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597351329412" />
     <state width="1876" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597840755247" />
+    <state x="540" y="255" key="IDE.errors.dialog" timestamp="1601148874155">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="540" y="255" key="IDE.errors.dialog/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1601148874155" />
     <state x="672" y="237" key="MultipleFileMergeDialog" timestamp="1597438068748">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -317,10 +343,10 @@
     </state>
     <state x="-1040" y="568" key="SettingsEditor/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@-1050.105.1050.1640" timestamp="1597353858648" />
     <state x="94" y="257" key="SettingsEditor/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597361509050" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1597839957675">
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1601042674727">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1597839957675" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-213.2560.1400/-1050.105.1050.1640@0.0.1920.1040" timestamp="1601042674727" />
     <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601042455663">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

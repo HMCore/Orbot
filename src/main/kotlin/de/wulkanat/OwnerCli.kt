@@ -1,12 +1,103 @@
 package de.wulkanat
 
-import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.Permission
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import de.wulkanat.cli.Cli
+import de.wulkanat.cli.makeCli
+import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
-import java.awt.Color
 
 class OwnerCli : ListenerAdapter() {
+    private val cli: Cli<PrivateMessageReceivedEvent> = makeCli(prefix = "!") {
+        command name "add" does "Add this channel to the notified list" through ::OwnerCliStuff.addChannel
+        command name "remove" does "Remove this channel to the notified list" through removeChannel
+        command name "publish" with { required literal argument with "on" or "off" } does
+                "[Community|Partner|Verified only] Auto publish the message if in an announcement channel" through publish
+        command name "ping" with { required string argument } does "What role to ping" through ping
+        command name "setMessage" with { required string argument } does "Set a custom message to show" through setMessage
+
+    }
+}
+
+object OwnerCliStuff {
+    private fun addChannel(_required: List<String>, _optional: MutableMap<String, String>, event: PrivateMessageReceivedEvent) {
+        val result = Channels.addChannel(event.channel.idLong, null)
+        if (result == null) {
+            event.message.channel.sendMessage("Already added.").queue()
+        } else {
+            event.message.channel.sendMessage("Added.").queue()
+            Admin.info()
+        }
+    }
+
+    private val removeChannel =
+        { _: List<String>, _: MutableMap<String, String>, event: PrivateMessageReceivedEvent ->
+            val result = Channels.channels.removeAll { it.id == event.channel.idLong }
+            Channels.saveChannels()
+            if (result) {
+                event.message.channel.sendMessage("Removed.").queue()
+            } else {
+                event.message.channel.sendMessage("This channel is not registered.").queue()
+            }
+        }
+
+    private val publish =
+        publish@{ required: List<String>, _: MutableMap<String, String>, event: PrivateMessageReceivedEvent ->
+            val channel = Channels.channels.find { it.id == event.channel.idLong } ?: run {
+                event.message.channel.sendMessage("Channel not registered.").queue()
+                return@publish
+            }
+
+            channel.autoPublish = required.first() == "on"
+            Channels.saveChannels()
+
+            event.message.channel.sendMessage("Auto publish is now ${required.first()}").queue()
+        }
+
+    private val ping =
+        ping@{ required: List<String>, _: MutableMap<String, String>, event: PrivateMessageReceivedEvent ->
+            val channel = Channels.channels.find { it.id == event.channel.idLong } ?: run {
+                event.message.channel.sendMessage("Channel is not registered.").queue()
+                return@ping
+            }
+
+            val roleName = required.first()
+            val role = event.message.guild.getRolesByName(required.first(), false).firstOrNull()
+
+            channel.mentionedRole = when {
+                roleName == "everyone" -> {
+                    event.message.channel.sendMessage("Now pinging $roleName.").queue()
+                    roleName
+                }
+                roleName == "none" -> {
+                    event.message.channel.sendMessage("Now pinging $roleName.").queue()
+                    null
+                }
+                role != null -> {
+                    event.message.channel.sendMessage("Now pinging ${role.name}").queue()
+                    role.id
+                }
+                else -> {
+                    event.message.channel.sendMessage("Unknown role.").queue()
+                    channel.mentionedRole
+                }
+            }
+            Channels.saveChannels()
+        }
+
+    private val setMessage =
+        setMessage@{ required: List<String>, _: MutableMap<String, String>, event: PrivateMessageReceivedEvent ->
+            val result = Channels.channels.find { it.id == event.channel.channelId } ?: run {
+                event.message.channel.sendMessage("Channel is not registered.").queue()
+                return@setMessage
+            }
+
+            val message = required.first()
+            result.message = CustomMessage(message)
+            Channels.saveChannels()
+            event.message.channel.sendMessage("Set `$message` as message.").queue()
+        }
+}
+
+/*class OwnerCli2 : ListenerAdapter() {
     private val prefix = "%!"
 
     override fun onMessageReceived(event: MessageReceivedEvent) {
@@ -211,5 +302,5 @@ class OwnerCli : ListenerAdapter() {
                 ).queue()
             }
         }
-    }
-}
+    }*
+}*/
