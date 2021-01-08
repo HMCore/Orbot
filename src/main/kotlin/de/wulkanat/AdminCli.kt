@@ -1,5 +1,6 @@
 package de.wulkanat
 
+import de.wulkanat.files.ServiceChannels
 import de.wulkanat.model.BlogPostPreview
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import de.wulkanat.web.SiteWatcher
@@ -41,23 +42,23 @@ class AdminCli : ListenerAdapter() {
                 if (command.size != 3) {
                     Admin.println("Enclose message and title in backticks (`)")
                 } else {
-                    Channels.sendServiceMessage(command[1].value.trim('`'), command[2].value.trim('`'))
+                    ServiceChannels.sendServiceMessage(command[1].value.trim('`'), command[2].value.trim('`'))
                 }
             }
             "refreshList" -> {
-                Channels.channels = Channels.refreshChannelsFromDisk()
-                Channels.serviceChannels = Channels.refreshServiceChannelsFromDisk()
+                ServiceChannels.channels = ServiceChannels.refreshChannelsFromDisk()
+                ServiceChannels.serviceChannels = ServiceChannels.refreshServiceChannelsFromDisk()
                 Admin.info()
             }
             "removeInactive" -> {
-                Channels.channels.removeAll { channel ->
-                    Channels.testServerId(channel.id) ?: run {
+                ServiceChannels.channels.removeAll { channel ->
+                    ServiceChannels.testServerId(channel.id) ?: run {
                         Admin.println("Removed ${channel.id}")
                         null
                     } == null
                 }
                 Admin.info()
-                Channels.saveChannels()
+                ServiceChannels.saveChannels()
             }
             "help" -> {
                 event.message.channel.sendMessage(

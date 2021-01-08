@@ -1,6 +1,9 @@
-package de.wulkanat
+package de.wulkanat.files
 
-import de.wulkanat.extensions.crosspost
+import com.gitlab.kordlib.core.Kord
+import com.gitlab.kordlib.core.entity.Embed
+import com.gitlab.kordlib.rest.builder.message.EmbedBuilder
+import de.wulkanat.*
 import kotlinx.serialization.list
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.JDA
@@ -9,8 +12,8 @@ import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.TextChannel
 import java.awt.Color
 
-object Channels {
-    var jda: JDA? = null
+object ServiceChannels {
+    var client: Kord? = null
 
     /**
      * List of (ServerID, ChannelID)
@@ -18,13 +21,13 @@ object Channels {
     var channels: MutableList<DiscordChannel> = refreshChannelsFromDisk()
     var serviceChannels: MutableList<ServiceChannel> = refreshServiceChannelsFromDisk()
 
-    fun sentToAll(messageEmbed: MessageEmbed) {
-        if (jda == null)
+    fun sentToAll(messageEmbed: Embed) {
+        if (client == null)
             return
 
         for (channel_pair in channels) {
             try {
-                val channel = jda!!.getTextChannelById(channel_pair.id) ?: continue
+                val channel = client!!.getTextChannelById(channel_pair.id) ?: continue
                 val customMessage = channel_pair.message?.message ?: ""
 
                 if (channel_pair.mentionedRole != null) {
@@ -66,13 +69,14 @@ object Channels {
             .build()
 
         for (channelInfo in serviceChannels) {
-            val channel = jda!!.getTextChannelById(channelInfo.id)
+            val channel = client!!.getTextChannelById(channelInfo.id)
 
             channel?.sendMessage(serviceMessage)?.queue()
         }
 
         Admin.println("Service message distributed to ${serviceChannels.size} channels.")
-        Admin.sendDevMessage(serviceMessage, """
+        Admin.sendDevMessage(
+            serviceMessage, """
             ***************
             SERVICE MESSAGE
             
@@ -80,12 +84,13 @@ object Channels {
             -------
             $message
             ***************
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 
     fun checkEveryonePermission() {
         for (channel_pair in channels) {
-            val channel = jda!!.getTextChannelById(channel_pair.id) ?: continue
+            val channel = client!!.getTextChannelById(channel_pair.id) ?: continue
 
             if (channel_pair.mentionedRole == "everyone" &&
                 channel.guild.selfMember.hasPermission(Permission.MESSAGE_MENTION_EVERYONE)
@@ -111,11 +116,11 @@ object Channels {
     }
 
     fun getServerNames(server: Long? = null): List<String> {
-        if (jda == null)
+        if (client == null)
             return listOf()
 
-        return channels.filter { server == null || (jda!!.getTextChannelById(it.id)?.guild?.idLong == server) }.map {
-            val channel = jda!!.getTextChannelById(it.id)
+        return channels.filter { server == null || (client!!.getTextChannelById(it.id)?.guild?.idLong == server) }.map {
+            val channel = client!!.getTextChannelById(it.id)
             if (channel == null) {
                 Admin.warning("Channel ${it.id} is no longer active!")
                 return@map "**${it.id}** *(inactive)*"
@@ -137,17 +142,17 @@ object Channels {
     }
 
     fun getServiceChannelServers(server: Long? = null): List<String> {
-        if (jda == null)
+        if (client == null)
             return listOf()
 
-        return serviceChannels.filter { server == null || (jda!!.getTextChannelById(it.id)?.guild?.idLong == server) }.map {
-            val channel = jda!!.getTextChannelById(it.id)
+        return serviceChannels.filter { server == null || (client!!.getTextChannelById(it.id)?.guild?.idLong == server) }.map {
+            val channel = client!!.getTextChannelById(it.id)
             "**${channel?.guild?.name ?: it.id}** #${channel?.name ?: "(inactive)"}"
         }
     }
 
     fun testServerId(id: Long): TextChannel? {
-        return jda?.getTextChannelById(id)
+        return client?.getTextChannelById(id)
     }
 
     fun addChannel(id: Long, role: String?): DiscordChannel? {

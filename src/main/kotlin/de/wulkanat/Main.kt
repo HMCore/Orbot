@@ -1,5 +1,6 @@
 package de.wulkanat
 
+import de.wulkanat.files.ServiceChannels
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
@@ -18,7 +19,7 @@ fun main() {
     builder.addEventListener(OwnerCli())
     builder.awaitReady()
 
-    Channels.jda = builder
+    ServiceChannels.client = builder
     Admin.jda = builder
     DiscordRpc.jda = builder
     Admin.info()
@@ -34,7 +35,7 @@ fun main() {
 
     timer("Updater", daemon = true, initialDelay = 0L, period = Admin.updateMs) {
         if (SiteWatcher.hasNewBlogPost()) {
-            Channels.sentToAll(SiteWatcher.newestBlog!!.toMessageEmbed())
+            ServiceChannels.sentToAll(SiteWatcher.newestBlog!!.toMessageEmbed())
         }
     }
 }

@@ -1,5 +1,6 @@
 package de.wulkanat
 
+import de.wulkanat.files.ServiceChannels
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
@@ -21,7 +22,7 @@ class OwnerCli : ListenerAdapter() {
 
         when (command.first()) {
             "add" -> {
-                val result = Channels.addChannel(channelId, null)
+                val result = ServiceChannels.addChannel(channelId, null)
                 if (result == null) {
                     event.message.channel.sendMessage("Already added.").queue()
                 } else {
@@ -30,8 +31,8 @@ class OwnerCli : ListenerAdapter() {
                 }
             }
             "remove" -> {
-                val result = Channels.channels.removeAll { it.id == channelId }
-                Channels.saveChannels()
+                val result = ServiceChannels.channels.removeAll { it.id == channelId }
+                ServiceChannels.saveChannels()
                 if (result) {
                     event.message.channel.sendMessage("Removed.").queue()
                 } else {
@@ -39,11 +40,11 @@ class OwnerCli : ListenerAdapter() {
                 }
             }
             "publish" -> {
-                val result = Channels.channels.find { it.id == channelId }
+                val result = ServiceChannels.channels.find { it.id == channelId }
                 if (result != null) {
                     if (command.size > 1 && listOf("on", "off").contains(command[1])) {
                         result.autoPublish = command[1] == "on"
-                        Channels.saveChannels()
+                        ServiceChannels.saveChannels()
 
                         event.message.channel.sendMessage("Auto publish is now ${command[1]}").queue()
                     } else {
@@ -54,7 +55,7 @@ class OwnerCli : ListenerAdapter() {
                 }
             }
             "ping" -> {
-                val result = Channels.channels.find { it.id == channelId }
+                val result = ServiceChannels.channels.find { it.id == channelId }
                 if (result != null) {
                     if (command.size > 1) {
                         val roles = event.message.guild.getRolesByName(command[1], false)
@@ -76,7 +77,7 @@ class OwnerCli : ListenerAdapter() {
                                 result.mentionedRole
                             }
                         }
-                        Channels.saveChannels()
+                        ServiceChannels.saveChannels()
                     } else {
                         event.message.channel.sendMessage("Usage: `${prefix}ping [everyone|none|roleName]`")
                     }
@@ -85,12 +86,12 @@ class OwnerCli : ListenerAdapter() {
                 }
             }
             "setMessage" -> {
-                val result = Channels.channels.find { it.id == channelId }
+                val result = ServiceChannels.channels.find { it.id == channelId }
                 if (result != null) {
                     if (command.size > 1) {
                         val message = event.message.contentRaw.removePrefix("${prefix}setMessage").trim()
                         result.message = CustomMessage(message)
-                        Channels.saveChannels()
+                        ServiceChannels.saveChannels()
                         event.message.channel.sendMessage("Set `$message` as message.").queue()
                     } else {
                         event.message.channel.sendMessage("Usage: `${prefix}setMessage [message]`")
@@ -100,10 +101,10 @@ class OwnerCli : ListenerAdapter() {
                 }
             }
             "resetMessage" -> {
-                val result = Channels.channels.find { it.id == channelId }
+                val result = ServiceChannels.channels.find { it.id == channelId }
                 if (result != null) {
                     result.message = null
-                    Channels.saveChannels()
+                    ServiceChannels.saveChannels()
                     event.message.channel.sendMessage("Reset to no message.").queue()
                 } else {
                     event.message.channel.sendMessage("Channel is not registered.").queue()
@@ -112,32 +113,32 @@ class OwnerCli : ListenerAdapter() {
             "serviceChannel" -> {
                 if (command.size > 1 && listOf("add", "remove").contains(command[1])) {
                     if (command[1] == "add") {
-                        if (Channels.serviceChannels.find { it.id == channelId } != null) {
+                        if (ServiceChannels.serviceChannels.find { it.id == channelId } != null) {
                             event.message.channel.sendMessage("Already a service channel.").queue()
                         } else {
-                            Channels.serviceChannels.add(ServiceChannel(channelId))
-                            Channels.saveChannels()
+                            ServiceChannels.serviceChannels.add(ServiceChannel(channelId))
+                            ServiceChannels.saveChannels()
                             event.message.channel.sendMessage("Added as service channel.").queue()
                         }
                     } else {
                         event.message.channel.sendMessage(
-                            if (Channels.serviceChannels.removeAll { it.id == channelId }) "Channel removed."
+                            if (ServiceChannels.serviceChannels.removeAll { it.id == channelId }) "Channel removed."
                             else "Not a service channel."
                         ).queue()
                     }
-                    Channels.saveChannels()
+                    ServiceChannels.saveChannels()
                 } else {
                     event.message.channel.sendMessage("Usage: `${prefix}serviceChannel [add|remove]`")
                 }
 
             }
             "publishMessage" -> {
-                val result = Channels.channels.find { it.id == channelId }
+                val result = ServiceChannels.channels.find { it.id == channelId }
                 if (result != null) {
                     if (result.message != null) {
                         if (command.size > 1 && listOf("on", "off").contains(command[1])) {
                             result.message?.pushAnnouncement = command[1] == "on"
-                            Channels.saveChannels()
+                            ServiceChannels.saveChannels()
 
                             event.message.channel.sendMessage("Auto publish (message) is now ${command[1]}").queue()
                         } else {
@@ -156,10 +157,10 @@ class OwnerCli : ListenerAdapter() {
                         .setTitle("Server overview")
                         .setColor(Color.GREEN)
                         .setDescription("""
-                            ${Channels.getServerNames(event.message.guild.idLong).joinToString("\n")}
+                            ${ServiceChannels.getServerNames(event.message.guild.idLong).joinToString("\n")}
                                                 
                             **_Service Channels_**
-                            ${Channels.getServiceChannelServers(event.message.guild.idLong).joinToString("\n")}
+                            ${ServiceChannels.getServiceChannelServers(event.message.guild.idLong).joinToString("\n")}
                         """.trimIndent())
                         .setAuthor(Admin.admin?.name, Admin.admin?.avatarUrl, Admin.admin?.avatarUrl)
                         .build()

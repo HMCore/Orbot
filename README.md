@@ -31,9 +31,9 @@ the bot should message you on Discord.
 
 *Note:* You need to invite the bot into a server before it can message you.
 
-Run it once (it should crash or print an error), so `admin.json`, `servers.json` and `service_channels.json`
+Run it once (it should crash or print an error), so `config.json`, `servers.json` and `service_channels.json`
 are being created.
-Add your Discord ID `adminId` (not name), Bot token `token`, and update frequency `updateMs` to the `admin.json`,
+Add your Discord ID `adminId` (not name), Bot token `token`, and update frequency `updateMs` to the `config.json`,
 optionally you can add your own messages for when the bot is looking and when it can't reach Hytale Servers.
 
 If you verified that everything works correctly, you can start the server in the background, on Linux that is
@@ -59,7 +59,7 @@ I developed it under Windows, and had some trouble compiling it on Linux. You mi
 | !help | | Show a help dialog with all these commands |
 
 These commands will only work by private messaging the bot (and will be ignored if they don't
-come from the admin registered in the `admin.json`.
+come from the admin registered in the `config.json`.
 
 ## TODO
 

@@ -10,7 +10,7 @@ import java.io.File
 @Serializable
 data class DiscordChannel(
     val id: Long,
-    var mentionedRole: String? = null,
+    var mentionedRole: Long? = null,
     var autoPublish: Boolean = false,
     var message: CustomMessage? = null
 )

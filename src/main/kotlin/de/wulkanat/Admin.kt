@@ -1,141 +1,82 @@
 package de.wulkanat
 
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
-import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.JDA
-import net.dv8tion.jda.api.entities.Activity
-import net.dv8tion.jda.api.entities.MessageEmbed
-import net.dv8tion.jda.api.entities.User
+import com.gitlab.kordlib.common.entity.Snowflake
+import com.gitlab.kordlib.core.Kord
+import com.gitlab.kordlib.core.behavior.channel.createEmbed
+import com.gitlab.kordlib.core.entity.User
+import com.gitlab.kordlib.rest.builder.message.EmbedBuilder
+import de.wulkanat.files.Config
+import de.wulkanat.files.ServiceChannels
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.awt.Color
 
 object Admin {
-    val userId: Long
-    val token: String
-    val updateMs: Long
-    val message: String
-    val offlineMessage: String
-
-    init {
-        val admin = Json(JsonConfiguration.Stable).parse(AdminFile.serializer(), ADMIN_FILE.readText())
-        userId = admin.adminId
-        token = admin.token
-        updateMs = admin.updateMs
-        message = admin.watchingMessage
-        offlineMessage = admin.offlineMessage
-    }
-
-    var jda: JDA? = null
+    var jda: Kord? = null
     set(value) {
         field = value
 
-        admin = value?.retrieveUserById(userId)?.complete()
-        if (admin == null) {
-            kotlin.io.println("Connection to de.wulkanat.Admin failed!")
-        } else {
-            kotlin.io.println("Connected to ${admin!!.name}. No further errors will be printed here.")
+        GlobalScope.launch {
+            admin = value?.getUser(Snowflake(Config.adminId))
+            if (admin == null) {
+                kotlin.io.println("Connection to de.wulkanat.Admin failed!")
+            } else {
+                kotlin.io.println("Connected to ${admin!!.username}. No further errors will be printed here.")
+            }
         }
     }
     var admin: User? = null
 
-    fun println(msg: String) {
-        sendDevMessage(
-            EmbedBuilder()
-                .setTitle(msg)
-                .setColor(Color.WHITE)
-                .build(),
-            msg
-        )
+    suspend fun println(msg: String) {
+        sendDevMessage(msg) {
+            title = msg
+            color = Color.WHITE
+        }
     }
 
-    fun printlnBlocking(msg: String) {
-        senDevMessageBlocking(
-            EmbedBuilder()
-                .setTitle(msg)
-                .setColor(Color.WHITE)
-                .build(),
-            msg
-        )
+    suspend fun error(msg: String, error: String, author: User? = null) {
+        sendDevMessage("$msg\n\n$error") {
+            title = msg
+            description = error
+            color = Color.RED
+            author?.let { author {
+                name = it.tag
+                icon = it.avatar.url
+                url = it.avatar.url
+            }}
+        }
     }
 
-    fun error(msg: String, error: String, author: User? = null) {
-        sendDevMessage(
-            EmbedBuilder()
-                .setTitle(msg)
-                .setDescription(error)
-                .setColor(Color.RED)
-                .run {
-                    if (author == null) {
-                        this
-                    } else {
-                        this.setAuthor(author.asTag, author.avatarUrl, author.avatarUrl)
-                    }
-                }
-                .build()
-            , "$msg\n\n${error}"
-        )
+    suspend fun warning(msg: String) {
+        sendDevMessage(msg) {
+            title = msg
+            color = Color.YELLOW
+        }
     }
 
-    fun errorBlocking(msg: String, error: Exception) {
-        senDevMessageBlocking(
-            EmbedBuilder()
-                .setTitle(msg)
-                .setDescription(error.message)
-                .setColor(Color.RED)
-                .build()
-            , "$msg\n\n${error.message}"
-        )
-    }
-
-    fun warning(msg: String) {
-        sendDevMessage(
-            EmbedBuilder()
-                .setTitle(msg)
-                .setColor(Color.YELLOW)
-                .build(),
-            msg
-        )
-    }
-
-    fun info() {
-        sendDevMessage(
-            EmbedBuilder()
-                .setTitle("Now watching for new Hytale Blogposts every ${updateMs / 1000}s")
-                .setDescription("""
-                    ${Channels.getServerNames().joinToString("\n")}
-                    
-                    **_Service Channels_**
-                    ${Channels.getServiceChannelServers().joinToString("\n")}
-                """.trimIndent())
-                .setColor(Color.GREEN)
-                .build(),
-            "Now watching for new Hytale BlogPosts"
-        )
+    suspend fun info() {
+        sendDevMessage("Now watching for new Hytale BlogPosts") {
+            title = "Now watching for new Hytale Blogposts every ${Config.updateMs / 1000}s"
+            description = """
+                ${ServiceChannels.getServerNames().joinToString("\n")}
+                
+                **_Service Channels_**
+                ${ServiceChannels.getServiceChannelServers().joinToString("\n")}
+            """.trimIndent()
+            color = Color.GREEN
+        }
     }
 
     fun silent(msg: String) {
         kotlin.io.println(msg)
     }
 
-    private fun senDevMessageBlocking(messageEmbed: MessageEmbed, fallback: String) {
-        admin = jda!!.retrieveUserById(userId).complete()
-        val devChannel = admin?.openPrivateChannel() ?: kotlin.run {
+    private suspend inline fun sendDevMessage(fallback: String, crossinline embed: EmbedBuilder.() -> Unit) {
+        val devChannel = admin?.getDmChannel() ?: kotlin.run {
             kotlin.io.println(fallback)
             return
         }
 
-        devChannel.complete()
-            .sendMessage(messageEmbed).complete()
-    }
-
-    fun sendDevMessage(messageEmbed: MessageEmbed, fallback: String) {
-        val devChannel = admin?.openPrivateChannel() ?: kotlin.run {
-            kotlin.io.println(fallback)
-            return
-        }
-
-        devChannel.queue {
-            it.sendMessage(messageEmbed).queue()
-        }
+        devChannel.createEmbed(embed)
     }
 }

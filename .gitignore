@@ -1,5 +1,5 @@
 servers.json
-admin.json
+config.json
 service_channels.json
 *.hprof
 /build
