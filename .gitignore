@@ -4,3 +4,4 @@ service_channels.json
 *.hprof
 /build
 /.gradle
+.idea
