@@ -3,6 +3,8 @@ package de.wulkanat.web
 import de.wulkanat.Admin
 import de.wulkanat.DiscordRpc
 import de.wulkanat.model.BlogPostPreview
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 import java.io.IOException
 
@@ -11,9 +13,14 @@ object SiteWatcher {
     var newestBlog: BlogPostPreview? = null
     private var siteOnline = false
 
-    fun hasNewBlogPost(): Boolean {
+    suspend fun hasNewBlogPost(): Boolean {
         try {
-            val doc = Jsoup.connect(BLOG_INDEX_URL).get()
+            val doc = withContext(Dispatchers.IO) {
+                // solved by `withContext`
+                // https://stackoverflow.com/a/63332658
+                @Suppress("BlockingMethodInNonBlockingContext")
+                Jsoup.connect(BLOG_INDEX_URL).get()
+            }
             val newBlog = BlogPostParser.getFistBlog(doc)
 
             if (newestBlog == newBlog) {

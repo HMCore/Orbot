@@ -2,6 +2,6 @@ servers.json
 config.json
 service_channels.json
 *.hprof
-/build
-/.gradle
-.idea
+/build/
+/.gradle/
+/.idea/
