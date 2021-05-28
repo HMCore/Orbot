@@ -8,7 +8,6 @@ import kotlinx.serialization.json.Json
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Message
-import net.dv8tion.jda.api.entities.TextChannel
 import java.awt.Color
 
 object Channels {

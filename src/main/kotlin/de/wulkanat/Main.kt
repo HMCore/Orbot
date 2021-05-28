@@ -19,7 +19,6 @@ import org.quartz.impl.StdSchedulerFactory
 import javax.security.auth.login.LoginException
 import kotlin.concurrent.timer
 
-
 object Main {
     @JvmField
     var jdas = mutableListOf<JDA>()
@@ -28,7 +27,8 @@ object Main {
     fun main(args: Array<String>) {
         val builder = JDABuilder.createLight(
             Admin.token,
-            GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
+            GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES
+        )
             .setActivity(Activity.watching(Admin.message))
 
         configureMemoryUsage(builder)
@@ -92,7 +92,6 @@ object Main {
 
     }
 
-
     fun configureMemoryUsage(builder: JDABuilder) {
         // Disable cache for member activities (streaming/games/spotify)
         builder.disableCache(CacheFlag.ACTIVITY)
@@ -110,5 +109,4 @@ object Main {
         // Large guilds will only provide online members in their setup and thus reduce bandwidth if chunking is disabled.
         builder.setLargeThreshold(50)
     }
-
 }
