@@ -2,13 +2,13 @@
 
 package de.wulkanat
 
+import de.wulkanat.webhook.WebhookCaller
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Message
-import org.hmcore.WebhookCaller
 import java.awt.Color
 
 object Channels {
