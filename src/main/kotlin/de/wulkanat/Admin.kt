@@ -2,9 +2,9 @@
 
 package de.wulkanat
 
+import de.wulkanat.extensions.embed
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
@@ -18,92 +18,72 @@ object Admin {
     val message: String = adFile.watchingMessage
     val offlineMessage: String = adFile.offlineMessage
 
-    fun connectToUser() {
-        Main.jdas.forEach {
-            if(admin != null) return@forEach
-            admin = it.retrieveUserById(userId).complete()
-        }
-        if (admin == null) {
-            kotlin.io.println("Connection to de.wulkanat.Admin failed!")
-        } else {
-            kotlin.io.println("Connected to ${admin!!.name}. No further errors will be printed here.")
-        }
-    }
-
     var admin: User? = null
 
-    fun println(msg: String) {
-        sendDevMessage(
-            EmbedBuilder()
-                .setTitle(msg)
-                .setColor(Color.WHITE)
-                .build(),
-            msg
-        )
+    fun connectToUser() {
+        Main.jdas.find { jda ->
+            jda.retrieveUserById(userId).complete()?.also { admin = it } != null
+        } ?: return kotlin.io.println("Connection to de.wulkanat.Admin failed!")
+
+        kotlin.io.println("Connected to ${admin!!.name}. No further errors will be printed here.")
     }
 
-    fun printlnBlocking(msg: String) {
-        senDevMessageBlocking(
-            EmbedBuilder()
-                .setTitle(msg)
-                .setColor(Color.WHITE)
-                .build(),
-            msg
-        )
-    }
+    fun println(msg: String) = sendDevMessage(
+        embed {
+            title = msg
+            color = Color.WHITE
+        }, msg
+    )
 
-    fun error(msg: String, error: String, author: User? = null) {
-        sendDevMessage(
-            EmbedBuilder()
-                .setTitle(msg)
-                .setDescription(error)
-                .setColor(Color.RED)
-                .run {
-                    if (author == null) {
-                        this
-                    } else {
-                        this.setAuthor(author.asTag, author.avatarUrl, author.avatarUrl)
-                    }
-                }
-                .build(), "$msg\n\n${error}"
-        )
-    }
+    fun printlnBlocking(msg: String) = sendDevMessageBlocking(
+        embed {
+            title = msg
+            color = Color.WHITE
+        }, msg
+    )
 
-    fun errorBlocking(msg: String, error: Exception) {
-        senDevMessageBlocking(
-            EmbedBuilder()
-                .setTitle(msg)
-                .setDescription(error.message)
-                .setColor(Color.RED)
-                .build(), "$msg\n\n${error.message}"
-        )
-    }
+    fun error(msg: String, error: String, author: User? = null) = sendDevMessage(
+        embed {
+            title = msg
+            description = error
+            color = Color.RED
 
-    fun warning(msg: String) {
-        sendDevMessage(
-            EmbedBuilder()
-                .setTitle(msg)
-                .setColor(Color.YELLOW)
-                .build(),
-            msg
-        )
-    }
+            author {
+                name = author?.asTag
+                url = author?.avatarUrl
+                icon = author?.avatarUrl
+            }
+        }, "$msg\n\n${error}"
+    )
+
+    fun errorBlocking(msg: String, error: Exception) = sendDevMessageBlocking(
+        embed {
+            title = msg
+            description = error.message
+            color = Color.RED
+        }, "$msg\n\n${error.message}"
+    )
+
+    fun warning(msg: String) = sendDevMessage(
+        embed {
+            title = msg
+            color = Color.YELLOW
+        }, msg
+    )
 
     fun info() {
         sendDevMessage(
-            EmbedBuilder()
-                .setTitle("Now watching for new Hytale Blogposts every ${updateMs / 1000}s")
-                .setDescription(
-                    """
+            embed {
+                title = "Now watching for new Hytale Blogposts every ${updateMs / 1000}s"
+                description = """
                     ${Channels.getServerNames().joinToString("\n")}
                     
                     **_Service Channels_**
                     ${Channels.getServiceChannelServers().joinToString("\n")}
                 """.trimIndent()
-                )
-                .setColor(Color.GREEN)
-                .build(),
-            "Now watching for new Hytale BlogPosts"
+                color = Color.GREEN
+
+            }, "Now watching for new Hytale BlogPosts"
         )
     }
 
@@ -111,25 +91,13 @@ object Admin {
         kotlin.io.println(msg)
     }
 
-    private fun senDevMessageBlocking(messageEmbed: MessageEmbed, fallback: String) {
-        val devChannel = admin?.openPrivateChannel() ?: kotlin.run {
-            kotlin.io.println(fallback)
-            return
-        }
-
-        devChannel.complete()
-            .sendMessage(messageEmbed).complete()
+    private fun sendDevMessageBlocking(messageEmbed: MessageEmbed, fallback: String) {
+        (admin?.openPrivateChannel() ?: return kotlin.io.println(fallback))
+            .complete().sendMessage(messageEmbed).complete()
     }
 
     fun sendDevMessage(messageEmbed: MessageEmbed, fallback: String) {
-        kotlin.io.println(admin!!.id)
-
-        val devChannel = admin?.openPrivateChannel() ?: kotlin.run {
-            kotlin.io.println(fallback)
-            return
-        }
-
-        devChannel.queue {
+        (admin?.openPrivateChannel() ?: return kotlin.io.println(fallback)).queue {
             it.sendMessage(messageEmbed).queue()
         }
     }
