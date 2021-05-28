@@ -35,21 +35,19 @@ object Main {
 
         for (i in 0 until 6) {
             try {
+                var jda = builder.useSharding(i, 6)
+                    .build()
+                jda.addEventListener(AdminCli())
+                jda.addEventListener(ErrorHandler())
+                jda.addEventListener(OwnerCli())
+                jda.awaitReady()
                 jdas.add(
-                    builder.useSharding(i, 6)
-                        .build()
+                    jda
                 )
             } catch (loginException: LoginException) {
                 println("!!! Shard $i could not login !!!")
             }
         }
-
-        val jda = builder.build()
-
-        jda.addEventListener(AdminCli())
-        jda.addEventListener(ErrorHandler())
-        jda.addEventListener(OwnerCli())
-        jda.awaitReady()
 
         Admin.connectToUser()
 

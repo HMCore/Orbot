@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 import de.wulkanat.web.SiteWatcher
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent
+import org.hmcore.TwitterJob
 import java.awt.Color
 import kotlin.system.exitProcess
 
@@ -31,6 +32,8 @@ class AdminCli : ListenerAdapter() {
                     date = "now",
                     description = "Lorem Ipsum"
                 )
+
+                TwitterJob.lastTweetID = "poggers"
 
                 Admin.println("Posting on next update cycle.")
             }

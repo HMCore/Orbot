@@ -36,7 +36,7 @@ public class TwitterJob implements Job {
             if(!lastTweetID.equalsIgnoreCase(tweetID)) {
                 lastTweetID = tweetID;
 
-                Channels.INSTANCE.sentToAll(new MessageBuilder().append(" You got mail! <:blobmail:817758108503769130> https://twitter.com/Hytale/status/").append(tweetID).build());
+                Channels.INSTANCE.sentToAll(new MessageBuilder().append("https://twitter.com/Hytale/status/").append(tweetID).build());
 
             }
 

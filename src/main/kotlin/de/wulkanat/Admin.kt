@@ -20,7 +20,7 @@ object Admin {
 
     fun connectToUser() {
         Main.jdas.forEach {
-            admin ?: return;
+            if(admin != null) return@forEach
             admin = it.retrieveUserById(userId).complete()
         }
         if (admin == null) {
@@ -122,6 +122,8 @@ object Admin {
     }
 
     fun sendDevMessage(messageEmbed: MessageEmbed, fallback: String) {
+        kotlin.io.println(admin!!.id)
+
         val devChannel = admin?.openPrivateChannel() ?: kotlin.run {
             kotlin.io.println(fallback)
             return

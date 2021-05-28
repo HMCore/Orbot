@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="Update Json Serialization">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Channels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Channels.kt" afterDir="false" />
+    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Admin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Admin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/AdminCli.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/AdminCli.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +92,7 @@
       <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\src\main\kotlin\de\wulkanat" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.HytaleUpdateBot [build]">
+  <component name="RunManager" selected="Kotlin.Main">
     <configuration name="HytaleUpdateBot [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -158,8 +160,8 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/HytaleUpdateBot-all-1.0-SNAPSHOT.jar" />
       <method v="2" />
     </configuration>
-    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="de.wulkanat.MainKt" />
+    <configuration name="Main" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.wulkanat.Main" />
       <module name="HytaleUpdateBot.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -167,6 +169,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.Main" />
         <item itemvalue="Gradle.HytaleUpdateBot [fatJar]" />
         <item itemvalue="Gradle.HytaleUpdateBot [build]" />
         <item itemvalue="Gradle.HytaleUpdateBot [clean]" />
@@ -258,5 +261,8 @@
         <watch expression="((org.jsoup.nodes.Element.NodeList)((Document)doc).childNodes).get(2)" custom="org.jsoup.nodes.Element.NodeList,org.jsoup.nodes.Document" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="se.expertsystem.intellij.aop.aspectj.AspectJProjectComponent">
+    <setting name="isActivated" value="false" />
   </component>
 </project>
