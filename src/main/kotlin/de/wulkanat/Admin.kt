@@ -1,18 +1,17 @@
 @file:JvmName("Admin")
+
 package de.wulkanat
 
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.JDA
-import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
 
 object Admin {
     @JvmField
-    val adFile = Json(JsonConfiguration.Stable).parse(AdminFile.serializer(), ADMIN_FILE.readText())
+    val adFile = Json.decodeFromString<AdminFile>(ADMIN_FILE.readText())
     val userId: Long = adFile.adminId
     val token: String = adFile.token
     val updateMs: Long = adFile.updateMs
@@ -21,8 +20,8 @@ object Admin {
 
     fun connectToUser() {
         Main.jdas.forEach {
-            if(admin != null) return;
-            admin = it.retrieveUserById(userId)?.complete()
+            admin ?: return;
+            admin = it.retrieveUserById(userId).complete()
         }
         if (admin == null) {
             kotlin.io.println("Connection to de.wulkanat.Admin failed!")
@@ -30,6 +29,7 @@ object Admin {
             kotlin.io.println("Connected to ${admin!!.name}. No further errors will be printed here.")
         }
     }
+
     var admin: User? = null
 
     fun println(msg: String) {
@@ -65,8 +65,7 @@ object Admin {
                         this.setAuthor(author.asTag, author.avatarUrl, author.avatarUrl)
                     }
                 }
-                .build()
-            , "$msg\n\n${error}"
+                .build(), "$msg\n\n${error}"
         )
     }
 
@@ -76,8 +75,7 @@ object Admin {
                 .setTitle(msg)
                 .setDescription(error.message)
                 .setColor(Color.RED)
-                .build()
-            , "$msg\n\n${error.message}"
+                .build(), "$msg\n\n${error.message}"
         )
     }
 
@@ -95,12 +93,14 @@ object Admin {
         sendDevMessage(
             EmbedBuilder()
                 .setTitle("Now watching for new Hytale Blogposts every ${updateMs / 1000}s")
-                .setDescription("""
+                .setDescription(
+                    """
                     ${Channels.getServerNames().joinToString("\n")}
                     
                     **_Service Channels_**
                     ${Channels.getServiceChannelServers().joinToString("\n")}
-                """.trimIndent())
+                """.trimIndent()
+                )
                 .setColor(Color.GREEN)
                 .build(),
             "Now watching for new Hytale BlogPosts"

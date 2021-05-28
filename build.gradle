@@ -9,14 +9,17 @@ version '2.0.0'
 repositories {
     mavenCentral()
     jcenter()
+    maven {
+        url 'https://m2.dv8tion.net/releases'
+    }
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    implementation 'net.dv8tion:JDA:4.2.0_189'
+    implementation 'net.dv8tion:JDA:4.2.1_253'
     implementation 'org.jsoup:jsoup:1.13.1'
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.14.0"
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1'
 
     implementation 'com.github.redouane59.twitter:twittered:1.20'
     implementation group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.2'

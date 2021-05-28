@@ -3,9 +3,8 @@ package de.wulkanat
 
 import de.wulkanat.extensions.ensureExists
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
-import kotlinx.serialization.list
 import java.io.File
 
 @Serializable
@@ -45,9 +44,7 @@ data class TwitterApi(
     val apiKeySecret: String = "Api Key secret here"
 )
 
-val json = Json(JsonConfiguration.Stable)
-
-val SERVERS_FILE = File("servers.json").ensureExists(json.stringify(DiscordChannel.serializer().list, listOf()))
+val SERVERS_FILE = File("servers.json").ensureExists(Json.encodeToString(listOf<DiscordChannel>()))
 val SERVICE_CHANNELS_FILE =
-    File("service_channels.json").ensureExists(json.stringify(ServiceChannel.serializer().list, listOf()))
-val ADMIN_FILE = File("admin.json").ensureExists(json.stringify(AdminFile.serializer(), AdminFile()))
+    File("service_channels.json").ensureExists(Json.encodeToString(listOf<ServiceChannel>()))
+val ADMIN_FILE = File("admin.json").ensureExists(Json.encodeToString(AdminFile()))

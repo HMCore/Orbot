@@ -1,13 +1,13 @@
 @file:JvmName("Channels")
+
 package de.wulkanat
 
-import de.wulkanat.extensions.crosspost
-import kotlinx.serialization.list
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Message
-import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.TextChannel
 import java.awt.Color
 
@@ -75,7 +75,8 @@ object Channels {
         }
 
         Admin.println("Service message distributed to ${serviceChannels.size} channels.")
-        Admin.sendDevMessage(serviceMessage, """
+        Admin.sendDevMessage(
+            serviceMessage, """
             ***************
             SERVICE MESSAGE
             
@@ -83,7 +84,8 @@ object Channels {
             -------
             $message
             ***************
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 
     fun checkEveryonePermission() {
@@ -103,42 +105,33 @@ object Channels {
         }
     }
 
-    fun refreshChannelsFromDisk(): MutableList<DiscordChannel> {
-        return json.parse(
-            DiscordChannel.serializer().list, (SERVERS_FILE).readText()
-        ).toMutableList()
-    }
+    fun refreshChannelsFromDisk() =
+        Json.decodeFromString<List<DiscordChannel>>(SERVERS_FILE.readText()).toMutableList()
 
-    fun refreshServiceChannelsFromDisk(): MutableList<ServiceChannel> {
-        return json.parse(
-            ServiceChannel.serializer().list, (SERVICE_CHANNELS_FILE).readText()
-        ).toMutableList()
-    }
+    fun refreshServiceChannelsFromDisk() =
+        Json.decodeFromString<List<ServiceChannel>>(SERVICE_CHANNELS_FILE.readText()).toMutableList()
 
-    fun getServerNames(server: Long? = null): List<String> {
-
-        return Main.jdas.flatMap { jda ->
-            channels.filter { server == null || (jda!!.getTextChannelById(it.id)?.guild?.idLong == server) }.map {
-                val channel = jda!!.getTextChannelById(it.id)
-                if (channel == null) {
-                    Admin.warning("Channel ${it.id} is no longer active!")
-                    return@map "**${it.id}** *(inactive)*"
-                }
-
-                val role = when (it.mentionedRole) {
-                    null -> ""
-                    "everyone" -> " @everyone"
-                    else -> " @${channel.guild.getRoleById(it.mentionedRole ?: "")?.name}"
-                }
-                val publish = if (it.autoPublish) " (publish)" else ""
-                "**${channel.guild.name}** #${channel.name}${role}${publish}${
-                    if (it.message == null) {
-                        ""
-                    } else {
-                        "\n*${it.message!!.message}*${if (it.message!!.pushAnnouncement) " (publish)" else ""}"
-                    }
-                }"
+    fun getServerNames(server: Long? = null) = Main.jdas.flatMap { jda ->
+        channels.filter { server == null || (jda.getTextChannelById(it.id)?.guild?.idLong == server) }.map {
+            val channel = jda.getTextChannelById(it.id)
+            if (channel == null) {
+                Admin.warning("Channel ${it.id} is no longer active!")
+                return@map "**${it.id}** *(inactive)*"
             }
+
+            val role = when (it.mentionedRole) {
+                null -> ""
+                "everyone" -> " @everyone"
+                else -> " @${channel.guild.getRoleById(it.mentionedRole ?: "")?.name}"
+            }
+            val publish = if (it.autoPublish) " (publish)" else ""
+            "**${channel.guild.name}** #${channel.name}${role}${publish}${
+                if (it.message == null) {
+                    ""
+                } else {
+                    "\n*${it.message!!.message}*${if (it.message!!.pushAnnouncement) " (publish)" else ""}"
+                }
+            }"
         }
     }
 
@@ -153,13 +146,8 @@ object Channels {
         }
     }
 
-    fun testServerId(id: Long): TextChannel? {
-
-        return Main.jdas.map {
-            it.getTextChannelById(id)
-        }.firstOrNull()
-
-    }
+    fun testServerId(id: Long) =
+        Main.jdas.map { it.getTextChannelById(id) }.firstOrNull()
 
     fun addChannel(id: Long, role: String?): DiscordChannel? {
         if (channels.find { it.id == id } != null) {
@@ -172,17 +160,7 @@ object Channels {
     }
 
     fun saveChannels() {
-        SERVERS_FILE.writeText(
-            json.stringify(
-                DiscordChannel.serializer().list,
-                channels
-            )
-        )
-        SERVICE_CHANNELS_FILE.writeText(
-            json.stringify(
-                ServiceChannel.serializer().list,
-                serviceChannels
-            )
-        )
+        SERVERS_FILE.writeText(Json.encodeToString(channels))
+        SERVICE_CHANNELS_FILE.writeText(Json.encodeToString(serviceChannels))
     }
 }
