@@ -8,6 +8,7 @@ import kotlinx.serialization.json.Json
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Message
+import org.hmcore.WebhookCaller
 import java.awt.Color
 
 object Channels {
@@ -19,6 +20,7 @@ object Channels {
     var serviceChannels: MutableList<ServiceChannel> = refreshServiceChannelsFromDisk()
 
     fun sentToAll(messageEmbed: Message) {
+        WebhookCaller.sendToGuildedNews(messageEmbed)
         Main.jdas.forEach { jda ->
             for (channel_pair in channels) {
                 try {
