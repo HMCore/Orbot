@@ -27,30 +27,26 @@ object Main {
     fun main(args: Array<String>) {
         val builder = JDABuilder.createLight(
             Admin.token,
-            GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES
-        )
-            .setActivity(Activity.watching(Admin.message))
+            GatewayIntent.GUILD_MESSAGES,
+            GatewayIntent.DIRECT_MESSAGES
+        ).setActivity(Activity.watching(Admin.message))
 
         configureMemoryUsage(builder)
 
-        for (i in 0 until 6) {
+        for (i in 0 until Admin.adFile.shards) {
             try {
-                var jda = builder.useSharding(i, 6)
-                    .build()
-                jda.addEventListener(AdminCli())
-                jda.addEventListener(ErrorHandler())
-                jda.addEventListener(OwnerCli())
-                jda.awaitReady()
-                jdas.add(
-                    jda
-                )
+                jdas.add(builder.useSharding(i, Admin.adFile.shards).build().apply {
+                    addEventListener(AdminCli())
+                    addEventListener(ErrorHandler())
+                    addEventListener(OwnerCli())
+                    awaitReady()
+                })
             } catch (loginException: LoginException) {
                 println("!!! Shard $i could not login !!!")
             }
         }
 
         Admin.connectToUser()
-
         Admin.info()
 
         Runtime.getRuntime().addShutdownHook(object : Thread() {
@@ -68,11 +64,9 @@ object Main {
             }
         }
 
-        // Grab the Scheduler instance from the Factory
         val scheduler = StdSchedulerFactory.getDefaultScheduler()
-        // and start it off
-        scheduler.start();
-        // define the job and tie it to our TwitterJob class
+        scheduler.start()
+
         val job: JobDetail = newJob(TwitterJob::class.java)
             .withIdentity("job1", "group1")
             .build()
@@ -84,23 +78,15 @@ object Main {
             .withSchedule(cronSchedule("0 0/5 * 1/1 * ? *"))
             .build()
 
-        // Tell quartz to schedule the job using our trigger
         scheduler.scheduleJob(job, trigger);
 
 
     }
 
-    fun configureMemoryUsage(builder: JDABuilder) {
-        // Disable cache for member activities (streaming/games/spotify)
+    private fun configureMemoryUsage(builder: JDABuilder) {
         builder.disableCache(CacheFlag.ACTIVITY)
-
-        // Only cache members who are either in a voice channel or owner of the guild
         builder.setMemberCachePolicy(MemberCachePolicy.VOICE.or(MemberCachePolicy.OWNER))
-
-        // Disable member chunking on startup
         builder.setChunkingFilter(ChunkingFilter.NONE)
-
-        // Disable presence updates and typing events
         builder.disableIntents(GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_MESSAGE_TYPING)
 
         // Consider guilds with more than 50 members as "large".

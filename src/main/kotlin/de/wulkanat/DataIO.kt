@@ -31,6 +31,7 @@ data class AdminFile(
     val adminId: Long = 12345,
     val token: String = "12345",
     val updateMs: Long = 30000,
+    val shards: Int = 6,
     val watchingMessage: String = "for new Blogposts",
     val offlineMessage: String = "CONNECTION FAILED",
     var twitterApi: TwitterApi? = TwitterApi()
