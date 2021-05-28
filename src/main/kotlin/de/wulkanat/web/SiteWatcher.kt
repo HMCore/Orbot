@@ -1,44 +1,37 @@
 package de.wulkanat.web
 
-import de.wulkanat.Admin
-import de.wulkanat.DiscordRpc
-import de.wulkanat.model.BlogPostPreview
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import java.io.File
 import java.io.IOException
 
-object SiteWatcher {
-    private const val BLOG_INDEX_URL = "https://www.hytale.com/news"
-    var newestBlog: BlogPostPreview? = null
-    private var siteOnline = false
+/**
+ * Removes the first element of a saved JSON list file
+ */
+inline fun <reified T>
+        removeFirstFromSiteSave(fileName: String) = File(fileName).takeIf { it.exists() }?.let {
+    it.writeText(Json.encodeToString(Json.decodeFromString<List<T>>(it.readText()).toMutableList().apply { removeFirst() }))
+}
 
-    fun hasNewBlogPost(): Boolean {
-        try {
-            val doc = Jsoup.connect(BLOG_INDEX_URL).get()
-            val newBlog = BlogPostParser.getFistBlog(doc)
+inline fun <reified T> updateSite(url: String, fileName: String, parser: (Document) -> List<T>) = try {
+    val currentStateFile = File(fileName)
 
-            if (newestBlog == newBlog) {
-                return false
-            }
+    val retrievedElements = parser(Jsoup.connect(url).get())
+    var currentElements = if (currentStateFile.exists())
+        Json.decodeFromString(currentStateFile.readText()) else retrievedElements
 
-            if (newestBlog == null) {
-                newestBlog = newBlog
-                return false
-            } else {
-                newestBlog = newBlog
-            }
-        } catch (e: IOException) {
-            Admin.error("Connection to Hytale Server failed", e.message ?: e.localizedMessage)
-            siteOnline = false
-            DiscordRpc.updatePresence(siteOnline)
+    val newElements = retrievedElements - currentElements
+    currentElements = retrievedElements
+    currentStateFile.writeText(Json.encodeToString(currentElements))
 
-            return false
-        }
+    newElements
+} catch (e: IOException) {
+    // TODO: put this somewhere else
+    // Admin.error("""Fetching "$url" failed!""", e.message ?: e.localizedMessage)
+    // DiscordRpc.updatePresence(canUpdate.also { canUpdate = false })
 
-        if (!siteOnline) {
-            siteOnline = true
-            DiscordRpc.updatePresence(siteOnline)
-        }
-
-        return true
-    }
+    null
 }

@@ -8,3 +8,4 @@ operator fun Element.get(className: String): Elements =
 
 val Elements.text get() = text().trim()
 val Element.absUrl get(): String = child(0).absUrl("href")
+val Element.imgSrc get(): String = child(0).attr("src")

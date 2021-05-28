@@ -1,6 +1,6 @@
 package de.wulkanat
 
-import de.wulkanat.web.SiteWatcher
+import de.wulkanat.web.getNewBlogPosts
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.MessageBuilder
@@ -59,8 +59,8 @@ object Main {
         })
 
         timer("Updater", daemon = true, initialDelay = 0L, period = Admin.updateMs) {
-            if (SiteWatcher.hasNewBlogPost()) {
-                Channels.sentToAll(MessageBuilder().setEmbed(SiteWatcher.newestBlog!!.toMessageEmbed()).build())
+            getNewBlogPosts()?.forEach {
+                Channels.sentToAll(MessageBuilder().setEmbed(it.toMessageEmbed()).build())
             }
         }
 

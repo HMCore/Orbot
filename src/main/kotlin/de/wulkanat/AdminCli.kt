@@ -1,8 +1,7 @@
 package de.wulkanat
 
-import de.wulkanat.model.BlogPostPreview
+import de.wulkanat.web.fakeUpdateBlogPost
 import net.dv8tion.jda.api.hooks.ListenerAdapter
-import de.wulkanat.web.SiteWatcher
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent
 import org.hmcore.TwitterJob
@@ -24,14 +23,9 @@ class AdminCli : ListenerAdapter() {
         when (command[0].value) {
             "stop" -> exitProcess(1)
             "fakeUpdate" -> {
-                SiteWatcher.newestBlog = BlogPostPreview(
-                    title = "FakePost",
-                    imgUrl = "",
-                    fullPostUrl = "",
-                    author = "wulkanat",
-                    date = "now",
-                    description = "Lorem Ipsum"
-                )
+                // TODO: implement fake update for blog posts
+                // BLOG_POST_WATCHER.current = setOf()
+                fakeUpdateBlogPost()
 
                 TwitterJob.lastTweetID = "poggers"
 

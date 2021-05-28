@@ -1,10 +1,12 @@
 package de.wulkanat.model
 
 import de.wulkanat.extensions.hex2Rgb
+import kotlinx.serialization.Serializable
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 
-class JobListingPreview(
+@Serializable
+data class JobListingPreview(
     val title: String,
     val department: String,
     val location: String,

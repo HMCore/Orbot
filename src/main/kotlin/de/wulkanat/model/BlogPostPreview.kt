@@ -3,7 +3,9 @@ package de.wulkanat.model
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 import de.wulkanat.extensions.hex2Rgb
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class BlogPostPreview(
     val title: String,
     val description: String,

@@ -2,7 +2,11 @@
 package de.wulkanat
 
 import de.wulkanat.extensions.ensureExists
+import de.wulkanat.model.BlogPostPreview
+import de.wulkanat.model.JobListingPreview
+import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
@@ -28,22 +32,31 @@ data class CustomMessage(
 
 @Serializable
 data class AdminFile(
-    val adminId: Long = 12345,
-    val token: String = "12345",
-    val updateMs: Long = 30000,
-    val shards: Int = 6,
-    val watchingMessage: String = "for new Blogposts",
-    val offlineMessage: String = "CONNECTION FAILED",
-    var twitterApi: TwitterApi? = TwitterApi()
+    @Required val adminId: Long = 12345,
+    @Required val token: String = "12345",
+    @Required val updateMs: Long = 30000,
+    @Required val shards: Int = 6,
+    @Required val watchingMessage: String = "for new Blogposts",
+    @Required val offlineMessage: String = "CONNECTION FAILED",
+    @Required var twitterApi: TwitterApi? = TwitterApi()
 )
 
 @Serializable
 data class TwitterApi(
-    val accessToken: String = "accessTokenHere",
-    val accessTokenSecret: String = "accessTokenSecretHere",
-    val apiKey: String = "apiKeyHere",
-    val apiKeySecret: String = "Api Key secret here"
+    @Required val accessToken: String = "accessTokenHere",
+    @Required val accessTokenSecret: String = "accessTokenSecretHere",
+    @Required val apiKey: String = "apiKeyHere",
+    @Required val apiKeySecret: String = "Api Key secret here"
 )
+
+@Serializable
+data class Webhooks(
+    @Required val blogPostsWebhookUrl: String = "https://...",
+    @Required val jobListingsWebhookUrl: String = "https://...",
+)
+
+val WEBHOOKS_FILE = File("webhooks.json").ensureExists(Json.encodeToString(Webhooks()))
+val WEBHOOKS = Json.decodeFromString<Webhooks>(WEBHOOKS_FILE.readText())
 
 val SERVERS_FILE = File("servers.json").ensureExists(Json.encodeToString(listOf<DiscordChannel>()))
 val SERVICE_CHANNELS_FILE =
