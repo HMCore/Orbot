@@ -8,7 +8,7 @@ import de.wulkanat.model.BlogPostPreview
 import de.wulkanat.model.JobListingPreview
 
 private const val BLOG_POST_STATE_FILE_NAME = "blog_state.json"
-fun fakeUpdateBlogPost() = removeFirstFromSiteSave<BlogPostPreview>(BLOG_POST_STATE_FILE_NAME)
+fun fakeUpdateBlogPost(amount: Int = 1) = removeFromSiteSave<BlogPostPreview>(BLOG_POST_STATE_FILE_NAME, amount)
 fun getNewBlogPosts() = updateSite("https://hytale.com/news", BLOG_POST_STATE_FILE_NAME) { doc ->
     doc["postWrapper"].map {
         BlogPostPreview(
@@ -23,7 +23,7 @@ fun getNewBlogPosts() = updateSite("https://hytale.com/news", BLOG_POST_STATE_FI
 }
 
 private const val JOB_LISTING_STATE_FILE_NAME = "jobs_state.json"
-fun fakeUpdateJobListings() = removeFirstFromSiteSave<JobListingPreview>(JOB_LISTING_STATE_FILE_NAME)
+fun fakeUpdateJobListings(amount: Int = 1) = removeFromSiteSave<JobListingPreview>(JOB_LISTING_STATE_FILE_NAME, amount)
 fun getNewJobListings() = updateSite("https://hypixelstudios.com/jobs/", JOB_LISTING_STATE_FILE_NAME) { doc ->
     doc["current-jobs__departments"].flatMap { jobDepartment ->
         val jobDepartmentName = jobDepartment["current-jobs__department-name"].text

@@ -1,6 +1,7 @@
 package de.wulkanat
 
 import de.wulkanat.web.fakeUpdateBlogPost
+import de.wulkanat.web.fakeUpdateJobListings
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent
@@ -23,13 +24,19 @@ class AdminCli : ListenerAdapter() {
         when (command[0].value) {
             "stop" -> exitProcess(1)
             "fakeUpdate" -> {
-                // TODO: implement fake update for blog posts
-                // BLOG_POST_WATCHER.current = setOf()
-                fakeUpdateBlogPost()
+                if (command.size < 2) {
+                    Admin.println("Specify type")
+                } else {
+                    val amount = command.getOrNull(2)?.value?.trim('`')?.toIntOrNull() ?: 1
+                    when (command[1].value.trim('`')) {
+                        "blog" -> fakeUpdateBlogPost(amount)
+                        "twitter" -> TwitterJob.lastTweetID = "poggers"
+                        "jobs" -> fakeUpdateJobListings(amount)
+                        else -> Admin.println("Must be blog|twitter|jobs")
+                    }
 
-                TwitterJob.lastTweetID = "poggers"
-
-                Admin.println("Posting on next update cycle.")
+                    Admin.println("Posting $amount on next update cycle.")
+                }
             }
             "info" -> {
                 Admin.info()
@@ -66,7 +73,7 @@ class AdminCli : ListenerAdapter() {
                             """
                             **${prefix}stop**
                             Stop the bot
-                            **${prefix}fakeUpdate**
+                            **${prefix}fakeUpdate [blog|twitter|jobs] [amount]**
                             Post a fake update to every registered channel (can be used if bot missed the update)
                             **${prefix}info**
                             Show an overview over all registered channels

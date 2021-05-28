@@ -11,10 +11,15 @@ import java.io.IOException
 /**
  * Removes the first element of a saved JSON list file
  */
-inline fun <reified T>
-        removeFirstFromSiteSave(fileName: String) = File(fileName).takeIf { it.exists() }?.let {
-    it.writeText(Json.encodeToString(Json.decodeFromString<List<T>>(it.readText()).toMutableList().apply { removeFirst() }))
-}
+inline fun <reified T> removeFromSiteSave(fileName: String, amount: Int = 1) =
+    File(fileName).takeIf { it.exists() }?.let {
+        it.writeText(
+            if (amount >= 0) Json.encodeToString(
+                Json.decodeFromString<List<T>>(it.readText()).subList(0, amount)
+            )
+            else "[]"
+        )
+    }
 
 inline fun <reified T> updateSite(url: String, fileName: String, parser: (Document) -> List<T>) = try {
     val currentStateFile = File(fileName)
