@@ -1,6 +1,9 @@
 servers.json
 admin.json
 service_channels.json
+webhooks.json
+blog_state.json
+jobs_state.json
 *.hprof
 /build
 /.gradle
