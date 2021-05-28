@@ -17,6 +17,9 @@ dependencies {
     implementation 'net.dv8tion:JDA:4.2.0_189'
     implementation 'org.jsoup:jsoup:1.13.1'
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.14.0"
+
+    implementation 'com.github.redouane59.twitter:twittered:1.20'
+    implementation group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.2'
 }
 
 compileKotlin {

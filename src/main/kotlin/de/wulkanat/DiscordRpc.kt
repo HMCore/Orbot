@@ -4,7 +4,6 @@ import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Activity
 
 object DiscordRpc {
-    var jda: JDA? = null
 
     fun updatePresence(available: Boolean) {
         // jda ?: return

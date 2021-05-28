@@ -1,3 +1,4 @@
+@file:JvmName("Admin")
 package de.wulkanat
 
 import kotlinx.serialization.json.Json
@@ -10,26 +11,19 @@ import net.dv8tion.jda.api.entities.User
 import java.awt.Color
 
 object Admin {
-    val userId: Long
-    val token: String
-    val updateMs: Long
-    val message: String
-    val offlineMessage: String
+    @JvmField
+    val adFile = Json(JsonConfiguration.Stable).parse(AdminFile.serializer(), ADMIN_FILE.readText())
+    val userId: Long = adFile.adminId
+    val token: String = adFile.token
+    val updateMs: Long = adFile.updateMs
+    val message: String = adFile.watchingMessage
+    val offlineMessage: String = adFile.offlineMessage
 
-    init {
-        val admin = Json(JsonConfiguration.Stable).parse(AdminFile.serializer(), ADMIN_FILE.readText())
-        userId = admin.adminId
-        token = admin.token
-        updateMs = admin.updateMs
-        message = admin.watchingMessage
-        offlineMessage = admin.offlineMessage
-    }
-
-    var jda: JDA? = null
-    set(value) {
-        field = value
-
-        admin = value?.retrieveUserById(userId)?.complete()
+    fun connectToUser() {
+        Main.jdas.forEach {
+            if(admin != null) return;
+            admin = it.retrieveUserById(userId)?.complete()
+        }
         if (admin == null) {
             kotlin.io.println("Connection to de.wulkanat.Admin failed!")
         } else {
@@ -118,7 +112,6 @@ object Admin {
     }
 
     private fun senDevMessageBlocking(messageEmbed: MessageEmbed, fallback: String) {
-        admin = jda!!.retrieveUserById(userId).complete()
         val devChannel = admin?.openPrivateChannel() ?: kotlin.run {
             kotlin.io.println(fallback)
             return

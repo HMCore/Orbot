@@ -1,3 +1,4 @@
+@file:JvmName("DataIO")
 package de.wulkanat
 
 import de.wulkanat.extensions.ensureExists
@@ -32,7 +33,16 @@ data class AdminFile(
     val token: String = "12345",
     val updateMs: Long = 30000,
     val watchingMessage: String = "for new Blogposts",
-    val offlineMessage: String = "CONNECTION FAILED"
+    val offlineMessage: String = "CONNECTION FAILED",
+    var twitterApi: TwitterApi? = TwitterApi()
+)
+
+@Serializable
+data class TwitterApi(
+    val accessToken: String = "accessTokenHere",
+    val accessTokenSecret: String = "accessTokenSecretHere",
+    val apiKey: String = "apiKeyHere",
+    val apiKeySecret: String = "Api Key secret here"
 )
 
 val json = Json(JsonConfiguration.Stable)
