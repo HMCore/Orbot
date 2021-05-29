@@ -2,17 +2,16 @@
 
 package org.hmcore
 
-import org.hmcore.webhook.WebhookCaller
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Message
+import org.hmcore.extensions.toWebhook
 import java.awt.Color
 
 object Channels {
-
     /**
      * List of (ServerID, ChannelID)
      */
@@ -20,7 +19,8 @@ object Channels {
     var serviceChannels: MutableList<ServiceChannel> = refreshServiceChannelsFromDisk()
 
     fun sentToAll(messageEmbed: Message) {
-        WebhookCaller.sendToGuildedNews(messageEmbed)
+        messageEmbed.toWebhook().send(WEBHOOKS.blogPostsWebhookUrl)
+
         Main.jdas.forEach { jda ->
             for (channel_pair in channels) {
                 try {

@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="Add more tests">
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/FileTest.kt" afterDir="false" />
+    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="Add file tests">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Message.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/webhook/DiscordWebhookEmbed.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/webhook/DiscordWebhookEmbed.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hmcore/DiscordWebhook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hmcore/TwitterJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hmcore/TwitterJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Channels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Channels.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Color.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/webhook/WebhookCaller.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/ColorTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/ColorTest.kt" afterDir="false" />
     </list>
     <list id="44283a45-f406-407f-bce2-a31bb9bfc0cc" name="Changes by Valentin" comment="Changes by Valentin" />
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +186,7 @@
       <recent name="org" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All Tests">
+  <component name="RunManager" selected="Gradle.DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -196,6 +204,27 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="--tests &quot;org.hmcore.extensions.ColorTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;org.hmcore.webhook.DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -284,28 +313,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.wulkanat.Main" />
-      <module name="HytaleUpdateBot.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Gradle.ColorTest" />
       <item itemvalue="Gradle.EmbedTest" />
-      <item itemvalue="JUnit.All Tests" />
-      <item itemvalue="Kotlin.Main" />
       <item itemvalue="Gradle.FileTest" />
       <item itemvalue="Gradle.FileTest.Ensure exists should create a file if supplied with null but not write text" />
+      <item itemvalue="JUnit.All Tests" />
+      <item itemvalue="Gradle.DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL" />
         <item itemvalue="Gradle.FileTest.Ensure exists should create a file if supplied with null but not write text" />
         <item itemvalue="Gradle.FileTest" />
         <item itemvalue="Gradle.EmbedTest" />
         <item itemvalue="Gradle.ColorTest" />
-        <item itemvalue="Kotlin.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -485,7 +507,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HytaleUpdateBot$All_Tests.ic" NAME="All Tests Coverage Results" MODIFIED="1622283817250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/HytaleUpdateBot$All_Tests.ic" NAME="All Tests Coverage Results" MODIFIED="1622286395486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="se.expertsystem.intellij.aop.aspectj.AspectJProjectComponent">
     <setting name="isActivated" value="false" />

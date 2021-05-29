@@ -9,3 +9,6 @@ fun hex2Rgb(colorStr: String): Color {
         Integer.valueOf(colorStr.substring(5, 7), 16)
     )
 }
+
+fun Color.toRgb() =
+    (((red shl 8) + green) shl 8) + blue
