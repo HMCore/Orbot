@@ -1,6 +1,7 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.10'
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.10'
+    id 'jacoco'
 }
 
 group 'org.wulkanat'
@@ -51,6 +52,13 @@ task fatJar(type: Jar) {
         attributes 'Main-Class': 'org.wulkanat.MainKt',
                 'Implementation-Version': version
     }
+}
+
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
 }
 
 apply plugin: 'kotlinx-serialization'
