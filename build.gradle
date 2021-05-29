@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.10'
 }
 
-group 'de.wulkanat'
+group 'org.wulkanat'
 version '2.0.0'
 
 repositories {
@@ -23,6 +23,9 @@ dependencies {
 
     implementation 'com.github.redouane59.twitter:twittered:1.20'
     implementation group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.2'
+
+    testImplementation 'io.mockk:mockk:1.11.0'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit:1.5.10'
 }
 
 compileKotlin {
@@ -34,7 +37,7 @@ compileTestKotlin {
 
 jar {
     manifest {
-        attributes('Main-Class': 'de.wulkanat.MainKt')
+        attributes('Main-Class': 'org.wulkanat.MainKt')
     }
 }
 
@@ -45,7 +48,7 @@ task fatJar(type: Jar) {
     })
     with jar
     manifest {
-        attributes 'Main-Class': 'de.wulkanat.MainKt',
+        attributes 'Main-Class': 'org.wulkanat.MainKt',
                 'Implementation-Version': version
     }
 }

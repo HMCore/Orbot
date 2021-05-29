@@ -1,9 +1,7 @@
 @file:JvmName("DataIO")
-package de.wulkanat
+package org.hmcore
 
-import de.wulkanat.extensions.ensureExists
-import de.wulkanat.model.BlogPostPreview
-import de.wulkanat.model.JobListingPreview
+import org.hmcore.extensions.ensureExists
 import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString

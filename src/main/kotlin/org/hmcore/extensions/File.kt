@@ -1,4 +1,4 @@
-package de.wulkanat.extensions
+package org.hmcore.extensions
 
 import java.io.File
 

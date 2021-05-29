@@ -1,8 +1,8 @@
 @file:JvmName("Admin")
 
-package de.wulkanat
+package org.hmcore
 
-import de.wulkanat.extensions.embed
+import org.hmcore.extensions.embed
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import net.dv8tion.jda.api.entities.MessageEmbed
@@ -23,7 +23,7 @@ object Admin {
     fun connectToUser() {
         Main.jdas.find { jda ->
             jda.retrieveUserById(userId).complete()?.also { admin = it } != null
-        } ?: return kotlin.io.println("Connection to de.wulkanat.Admin failed!")
+        } ?: return kotlin.io.println("Connection to org.hmcore.Admin failed!")
 
         kotlin.io.println("Connected to ${admin!!.name}. No further errors will be printed here.")
     }

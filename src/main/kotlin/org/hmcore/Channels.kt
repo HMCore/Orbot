@@ -1,8 +1,8 @@
 @file:JvmName("Channels")
 
-package de.wulkanat
+package org.hmcore
 
-import de.wulkanat.webhook.WebhookCaller
+import org.hmcore.webhook.WebhookCaller
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

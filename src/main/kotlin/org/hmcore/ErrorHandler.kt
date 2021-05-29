@@ -1,4 +1,4 @@
-package de.wulkanat
+package org.hmcore
 
 import net.dv8tion.jda.api.events.ExceptionEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter

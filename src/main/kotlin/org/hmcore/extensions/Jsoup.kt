@@ -1,4 +1,4 @@
-package de.wulkanat.extensions
+package org.hmcore.extensions
 
 import org.jsoup.nodes.Element
 import org.jsoup.select.Elements

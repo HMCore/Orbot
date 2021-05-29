@@ -1,11 +1,11 @@
-package de.wulkanat.web
+package org.hmcore.web
 
-import de.wulkanat.extensions.absUrl
-import de.wulkanat.extensions.get
-import de.wulkanat.extensions.imgSrc
-import de.wulkanat.extensions.text
-import de.wulkanat.model.BlogPostPreview
-import de.wulkanat.model.JobListingPreview
+import org.hmcore.extensions.absUrl
+import org.hmcore.extensions.get
+import org.hmcore.extensions.imgSrc
+import org.hmcore.extensions.text
+import org.hmcore.model.BlogPostPreview
+import org.hmcore.model.JobListingPreview
 
 private const val BLOG_POST_STATE_FILE_NAME = "blog_state.json"
 fun fakeUpdateBlogPost(amount: Int = 1) = removeFromSiteSave<BlogPostPreview>(BLOG_POST_STATE_FILE_NAME, amount)

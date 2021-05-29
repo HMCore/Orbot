@@ -1,6 +1,6 @@
-package de.wulkanat.webhook
+package org.hmcore.webhook
 
-import de.wulkanat.WEBHOOKS
+import org.hmcore.WEBHOOKS
 import net.dv8tion.jda.api.entities.Message
 import org.hmcore.DiscordWebhook
 import org.hmcore.DiscordWebhook.EmbedObject

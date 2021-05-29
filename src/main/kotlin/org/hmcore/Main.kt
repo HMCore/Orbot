@@ -1,6 +1,6 @@
-package de.wulkanat
+package org.hmcore
 
-import de.wulkanat.web.getNewBlogPosts
+import org.hmcore.web.getNewBlogPosts
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.MessageBuilder
@@ -9,7 +9,6 @@ import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.utils.ChunkingFilter
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
-import org.hmcore.TwitterJob
 import org.quartz.CronScheduleBuilder.cronSchedule
 import org.quartz.JobBuilder.newJob
 import org.quartz.JobDetail

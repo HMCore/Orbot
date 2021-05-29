@@ -1,4 +1,4 @@
-package de.wulkanat.web
+package org.hmcore.web
 
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString

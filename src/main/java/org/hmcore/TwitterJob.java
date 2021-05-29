@@ -3,8 +3,6 @@ package org.hmcore;
 import com.github.redouane59.twitter.TwitterClient;
 import com.github.redouane59.twitter.dto.tweet.Tweet;
 import com.github.redouane59.twitter.signature.TwitterCredentials;
-import de.wulkanat.Admin;
-import de.wulkanat.Channels;
 import net.dv8tion.jda.api.MessageBuilder;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;

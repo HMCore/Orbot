@@ -1,11 +1,10 @@
-package de.wulkanat
+package org.hmcore
 
-import de.wulkanat.web.fakeUpdateBlogPost
-import de.wulkanat.web.fakeUpdateJobListings
+import org.hmcore.web.fakeUpdateBlogPost
+import org.hmcore.web.fakeUpdateJobListings
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent
-import org.hmcore.TwitterJob
 import java.awt.Color
 import kotlin.system.exitProcess
 

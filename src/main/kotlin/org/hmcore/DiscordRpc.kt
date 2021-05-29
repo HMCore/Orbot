@@ -1,7 +1,4 @@
-package de.wulkanat
-
-import net.dv8tion.jda.api.JDA
-import net.dv8tion.jda.api.entities.Activity
+package org.hmcore
 
 object DiscordRpc {
 

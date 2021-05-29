@@ -4,16 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="Update .gitignore">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/webhook/WebhookCaller.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/wulkanat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/wulkanat.xml" afterDir="false" />
+    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="Bug fixes">
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/ColorTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/EmbedTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Channels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Channels.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/extensions/Message.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/extensions/Message.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Inaccessibles.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hmcore/TwitterJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hmcore/TwitterJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Admin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Admin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/AdminCli.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/AdminCli.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Channels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Channels.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/DataIO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/DataIO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/DiscordRpc.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/DiscordRpc.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/ErrorHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/ErrorHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/OwnerCli.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/OwnerCli.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/extensions/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Color.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/extensions/Embed.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Embed.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/extensions/File.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/File.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/extensions/Jsoup.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Jsoup.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/extensions/Message.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/model/BlogPostPreview.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/model/BlogPostPreview.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/model/JobListingPreview.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/model/JobListingPreview.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/web/Parser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/web/Parser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/web/SiteWatcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/web/SiteWatcher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/de/wulkanat/webhook/WebhookCaller.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/webhook/WebhookCaller.kt" afterDir="false" />
     </list>
-    <list id="44283a45-f406-407f-bce2-a31bb9bfc0cc" name="Changes by Valentin" comment="Changes by Valentin">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/hmcore/WebhookCaller.java" beforeDir="false" />
-    </list>
+    <list id="44283a45-f406-407f-bce2-a31bb9bfc0cc" name="Changes by Valentin" comment="Changes by Valentin" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,10 +64,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
-        <option value="Kotlin File" />
         <option value="Class" />
         <option value="Kotlin Object" />
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -83,6 +100,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -108,14 +129,18 @@
       <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Git\Orbot\src\main\kotlin\org\hmcore" />
       <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot" />
       <recent name="E:\Projects\Kotlin_Proj\HytaleUpdateBot\src\main\kotlin\de\wulkanat" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="de.wulkanat" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org" />
+    </key>
   </component>
-  <component name="RunManager" selected="Kotlin.Main">
+  <component name="RunManager" selected="Gradle.EmbedTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -126,6 +151,48 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="ColorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;org.hmcore.extensions.ColorTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="EmbedTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;org.hmcore.extensions.EmbedTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="HytaleUpdateBot [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -139,27 +206,6 @@
         <option name="taskNames">
           <list>
             <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="HytaleUpdateBot [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -190,12 +236,8 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="HytaleUpdateBot-all-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/HytaleUpdateBot-all-1.0-SNAPSHOT.jar" />
-      <method v="2" />
-    </configuration>
     <configuration name="Main" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="de.wulkanat.Main" />
+      <option name="MAIN_CLASS_NAME" value="org.wulkanat.Main" />
       <module name="HytaleUpdateBot.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -203,11 +245,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.EmbedTest" />
+        <item itemvalue="Gradle.ColorTest" />
         <item itemvalue="Kotlin.Main" />
         <item itemvalue="Gradle.HytaleUpdateBot [fatJar]" />
         <item itemvalue="Gradle.HytaleUpdateBot [build]" />
-        <item itemvalue="Gradle.HytaleUpdateBot [clean]" />
-        <item itemvalue="JAR Application.HytaleUpdateBot-all-1.0-SNAPSHOT.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -222,7 +264,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1597322033373</updated>
-      <workItem from="1622225780094" duration="8575000" />
+      <workItem from="1622225780094" duration="9225000" />
     </task>
     <task id="LOCAL-00001" summary="Add auto publish feature">
       <created>1597437833375</created>
@@ -315,7 +357,21 @@
       <option name="project" value="LOCAL" />
       <updated>1622233754088</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Bug fixes">
+      <created>1622234469645</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1622234469645</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Changes by Valentin">
+      <created>1622234477364</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1622234477364</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,10 +399,11 @@
     <MESSAGE value="Update stuff" />
     <MESSAGE value="Add shards count configuration" />
     <MESSAGE value="Add Twitter integration&#10;Add Job Listening Integration&#10;Various Refactorings" />
-    <MESSAGE value="Changes by Valentin" />
     <MESSAGE value="Add more extensive fake update capabilities" />
     <MESSAGE value="Update .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update .gitignore" />
+    <MESSAGE value="Bug fixes" />
+    <MESSAGE value="Changes by Valentin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by Valentin" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
