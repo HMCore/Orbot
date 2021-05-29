@@ -15,7 +15,7 @@ data class BlogPostPreview(
 ) {
     fun toMessageEmbed() = embed {
         title {
-            title = this@BlogPostPreview.title
+            value = this@BlogPostPreview.title
             url = fullPostUrl
         }
         description = this@BlogPostPreview.description

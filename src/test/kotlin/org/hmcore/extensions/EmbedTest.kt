@@ -10,7 +10,7 @@ class EmbedTest {
     fun `Embed Title DSL should work`() {
         val dslEmbed = embed {
             title {
-                title = "Title"
+                value = "Title"
                 url = "https://a.b.c"
             }
         }

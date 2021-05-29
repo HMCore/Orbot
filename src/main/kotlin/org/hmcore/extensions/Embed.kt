@@ -41,7 +41,7 @@ class EmbedBuilderBuilder {
 
     fun title(builder: TitleBuilderBuilder.() -> Unit) =
         TitleBuilderBuilder().apply { builder() }.let {
-            _embed.setTitle(it.title, it.url)
+            _embed.setTitle(it.value, it.url)
         }
 
     fun footer(builder: FooterBuilderBuilder.() -> Unit) =
@@ -57,7 +57,7 @@ class FieldBuilderBuilder {
 }
 
 class TitleBuilderBuilder {
-    var title: String? = null
+    var value: String? = null
     var url: String? = null
 }
 
