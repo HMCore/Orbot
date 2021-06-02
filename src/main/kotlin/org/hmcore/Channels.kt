@@ -125,7 +125,7 @@ object Channels {
 
     fun getServerNames(server: Long? = null): List<String>? = Main.jdas.flatMap { jda ->
         channels.filter { server == null || (jda.getTextChannelById(it.id)?.guild?.idLong == server) }.mapNotNull {
-            val channel = jda.getTextChannelById(it.id) ?: return@mapNotNull null
+            val channel = jda.getTextChannelById(it.id) ?: return@mapNotNull null //TODO: ad channel not working message
 
             val role = when (it.mentionedRole) {
                 null -> ""
