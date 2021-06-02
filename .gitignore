@@ -7,3 +7,4 @@ jobs_state.json
 *.hprof
 /build
 /.gradle
+.idea/
