@@ -1,6 +1,8 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.10'
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.10'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+
 }
 
 group 'org.wulkanat'
@@ -38,18 +40,6 @@ compileTestKotlin {
 jar {
     manifest {
         attributes('Main-Class': 'org.wulkanat.MainKt')
-    }
-}
-
-task fatJar(type: Jar) {
-    baseName = project.name + '-all'
-    from((configurations.compile.findAll { !it.path.endsWith(".pom") }).collect {
-        it.isDirectory() ? it : zipTree(it)
-    })
-    with jar
-    manifest {
-        attributes 'Main-Class': 'org.wulkanat.MainKt',
-                'Implementation-Version': version
     }
 }
 

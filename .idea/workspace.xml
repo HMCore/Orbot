@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="twitter gods dont cancel me pls">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/hmcore/MessageType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/serialization/EnumTest.kt" afterDir="false" />
+    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="added multiple alert types:&#10;new aler types:&#10;   - twitter&#10;   - job">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/hmcore/TwitterJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hmcore/TwitterJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Channels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Channels.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/DataIO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/DataIO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/OwnerCli.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/OwnerCli.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
     </list>
     <list id="44283a45-f406-407f-bce2-a31bb9bfc0cc" name="Changes by Valentin" comment="Changes by Valentin" />
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +183,7 @@
       <recent name="org" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.Main">
+  <component name="RunManager" selected="Gradle.BlogShot [shadowJar]">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -218,23 +216,44 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="BlogShot [fatJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;org.hmcore.webhook.DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL&quot;" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
+            <option value="fatJar" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="BlogShot [shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="shadowJar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -245,27 +264,6 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="--tests &quot;org.hmcore.serialization.EnumTest.Enum serialization&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="FileTest.Ensure exists should create a file if supplied with null but not write text" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;org.hmcore.extensions.FileTest.Ensure exists should create a file if supplied with null but not write text&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -299,20 +297,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.FileTest.Ensure exists should create a file if supplied with null but not write text" />
-      <item itemvalue="Gradle.DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL" />
       <item itemvalue="Gradle.EnumTest.Enum serialization" />
       <item itemvalue="Gradle.BlogPostPreviewTest" />
       <item itemvalue="JUnit.All Tests" />
       <item itemvalue="Kotlin.Main" />
+      <item itemvalue="Gradle.BlogShot [fatJar]" />
+      <item itemvalue="Gradle.BlogShot [shadowJar]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.BlogShot [shadowJar]" />
+        <item itemvalue="Gradle.BlogShot [fatJar]" />
         <item itemvalue="Kotlin.Main" />
         <item itemvalue="Gradle.BlogPostPreviewTest" />
         <item itemvalue="Gradle.EnumTest.Enum serialization" />
-        <item itemvalue="Gradle.DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL" />
-        <item itemvalue="Gradle.FileTest.Ensure exists should create a file if supplied with null but not write text" />
       </list>
     </recent_temporary>
   </component>
@@ -448,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622284601372</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="added multiple alert types:&#10;new aler types:&#10;   - twitter&#10;   - job">
+      <created>1622659332308</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1622659332309</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,7 +487,8 @@
     <MESSAGE value="Changes by Valentin" />
     <MESSAGE value="Refactoring, Tests" />
     <MESSAGE value="Add more tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add more tests" />
+    <MESSAGE value="added multiple alert types:&#10;new aler types:&#10;   - twitter&#10;   - job" />
+    <option name="LAST_COMMIT_MESSAGE" value="added multiple alert types:&#10;new aler types:&#10;   - twitter&#10;   - job" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
