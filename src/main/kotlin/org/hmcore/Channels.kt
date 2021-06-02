@@ -123,9 +123,13 @@ object Channels {
     fun refreshServiceChannelsFromDisk() =
         Json.decodeFromString<List<ServiceChannel>>(SERVICE_CHANNELS_FILE.readText()).toMutableList()
 
-    fun getServerNames(server: Long? = null): List<String>? = Main.jdas.flatMap { jda ->
-        channels.filter { server == null || (jda.getTextChannelById(it.id)?.guild?.idLong == server) }.mapNotNull {
-            val channel = jda.getTextChannelById(it.id) ?: return@mapNotNull null
+    fun getServerNames(server: Long? = null) = Main.jdas.flatMap { jda ->
+        channels.filter { server == null || (jda.getTextChannelById(it.id)?.guild?.idLong == server) }.map {
+            val channel = jda.getTextChannelById(it.id)
+            if (channel == null) {
+                Admin.warning("Channel ${it.id} is no longer active!")
+                return@map "**${it.id}** *(inactive)*"
+            }
 
             val role = when (it.mentionedRole) {
                 null -> ""
