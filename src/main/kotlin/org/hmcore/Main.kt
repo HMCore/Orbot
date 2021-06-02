@@ -43,7 +43,7 @@ object Main {
         var content = ""
         file.bufferedReader().readLines().forEach {
             content += it
-                .replace(",\"mentionedRole\":", ",\"type\":\"BLOGPOST\",\"mentionedRole\":")
+                .replace("""mentionedRole":""".toRegex(),"""type":"BLOGPOST","mentionedRole":""")
         }
         file.writeBytes(content.encodeToByteArray())
     }

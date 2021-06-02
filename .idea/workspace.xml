@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="twitter gods dont cancel me pls">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/hmcore/MessageType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/serialization/EnumTest.kt" afterDir="false" />
+    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="Add file tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/hmcore/TwitterJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hmcore/TwitterJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Channels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Channels.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/DataIO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/DataIO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/OwnerCli.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/OwnerCli.kt" afterDir="false" />
     </list>
     <list id="44283a45-f406-407f-bce2-a31bb9bfc0cc" name="Changes by Valentin" comment="Changes by Valentin" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,15 +117,15 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/EmbedTest.kt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/ColorTest.kt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/build.gradle" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Embed.kt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/File.kt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Jsoup.kt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/model/JobListingPreview.kt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/model/BlogPostPreview.kt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/build.gradle" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/ColorTest.kt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Color.kt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/File.kt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Embed.kt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Jsoup.kt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/EmbedTest.kt" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="o7p0t8es" />
@@ -294,6 +287,7 @@
     <configuration name="Main" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.hmcore.Main" />
       <module name="HytaleUpdateBot.main" />
+      <option name="PROGRAM_PARAMETERS" value="serverDataConvert1" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
