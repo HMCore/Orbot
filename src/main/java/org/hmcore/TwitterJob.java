@@ -30,7 +30,7 @@ public class TwitterJob implements Job {
             if (!lastTweetID.equalsIgnoreCase(tweetID)) {
                 lastTweetID = tweetID;
 
-                Channels.INSTANCE.sentToAll(new MessageBuilder().append("https://twitter.com/Hytale/status/").append(tweetID).build());
+                Channels.INSTANCE.sentToAll(new MessageBuilder().append("https://twitter.com/Hytale/status/").append(tweetID).build(), MessageType.TWITTER);
             }
 
         } catch (Exception e) {

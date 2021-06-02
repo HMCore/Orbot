@@ -9,12 +9,16 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
 
+const val channelVersion = 2.0
+
 @Serializable
 data class DiscordChannel(
     val id: Long,
+    var type: MessageType,
     var mentionedRole: String? = null,
     var autoPublish: Boolean = false,
-    var message: CustomMessage? = null
+    var message: CustomMessage? = null,
+    var version: Double? = channelVersion
 )
 
 @Serializable

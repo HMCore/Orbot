@@ -18,10 +18,38 @@ class OwnerCli : ListenerAdapter() {
 
         val command = msg.removePrefix(prefix).split(Regex("\\s+"))
         val channelId = event.message.channel.idLong
+        val msgType: MessageType
+
+        if(command.size < 2)
+            msgType = MessageType.INVALID
+        else msgType = when (command[1].lowercase()) {
+                "blogpost" -> MessageType.BLOGPOST
+                "twitter" -> MessageType.TWITTER
+                "job" -> MessageType.JOB_LISTING
+                "website" -> MessageType.WEBSITE_CHANGED
+                else -> MessageType.INVALID
+            }
 
         when (command.first()) {
+            "categories" -> {
+                event.message.channel.sendMessage(EmbedBuilder()
+                    .setTitle("Categories")
+                    .setColor(Color.YELLOW)
+                    .setAuthor(Admin.admin?.name, Admin.admin?.avatarUrl, Admin.admin?.avatarUrl)
+                    .setDescription("Valid Categories:\n" +
+                            "   Blogpost\n" +
+                            "   Twitter\n" +
+                            "   Job - (changes of Job listings)\n" +
+                            "   Website - (if the content of some website or subdomain thats owned by hypixel studios gets changed) - soon\n")
+                    .build()).queue()
+                return
+            }
             "add" -> {
-                val result = Channels.addChannel(channelId, null)
+                if (msgType == MessageType.INVALID) {
+                    event.message.channel.sendMessage("Please choose a valid category. List valid categories with ${prefix}categories").queue()
+                    return
+                }
+                val result = Channels.addChannel(channelId, msgType)
                 if (result == null) {
                     event.message.channel.sendMessage("Already added.").queue()
                 } else {
@@ -30,7 +58,10 @@ class OwnerCli : ListenerAdapter() {
                 }
             }
             "remove" -> {
-                val result = Channels.channels.removeAll { it.id == channelId }
+                if (msgType == MessageType.INVALID) {
+                    event.message.channel.sendMessage("Please choose a valid category. List valid categories with ${prefix}categories").queue()
+                }
+                val result = Channels.channels.removeAll { it.id == channelId && (it.type == msgType || it.type == MessageType.INVALID) }
                 Channels.saveChannels()
                 if (result) {
                     event.message.channel.sendMessage("Removed.").queue()
@@ -39,31 +70,37 @@ class OwnerCli : ListenerAdapter() {
                 }
             }
             "publish" -> {
-                val result = Channels.channels.find { it.id == channelId }
+                if (msgType == MessageType.INVALID) {
+                    event.message.channel.sendMessage("Please choose a valid category. List valid categories with ${prefix}categories").queue()
+                }
+                val result = Channels.channels.find { it.id == channelId && it.type == msgType}
                 if (result != null) {
-                    if (command.size > 1 && listOf("on", "off").contains(command[1])) {
-                        result.autoPublish = command[1] == "on"
+                    if (command.size > 2 && listOf("on", "off").contains(command[2])) {
+                        result.autoPublish = command[2] == "on"
                         Channels.saveChannels()
 
                         event.message.channel.sendMessage("Auto publish is now ${command[1]}").queue()
                     } else {
-                        event.message.channel.sendMessage("Usage: `${prefix}publish [on|off]`")
+                        event.message.channel.sendMessage("Usage: `${prefix}publish [type] [on|off]`")
                     }
                 } else {
                     event.message.channel.sendMessage("Channel not registered.").queue()
                 }
             }
             "ping" -> {
-                val result = Channels.channels.find { it.id == channelId }
+                if (msgType == MessageType.INVALID) {
+                    event.message.channel.sendMessage("Please choose a valid category. List valid categories with ${prefix}categories").queue()
+                }
+                val result = Channels.channels.find { it.id == channelId && it.type == msgType}
                 if (result != null) {
-                    if (command.size > 1) {
-                        val roles = event.message.guild.getRolesByName(command[1], false)
+                    if (command.size > 2) {
+                        val roles = event.message.guild.getRolesByName(command[2], false)
                         result.mentionedRole = when {
-                            command[1] == "everyone" -> {
+                            command[2] == "everyone" -> {
                                 event.message.channel.sendMessage("Now pinging everyone.").queue()
                                 "everyone"
                             }
-                            command[1] == "none" -> {
+                            command[2] == "none" -> {
                                 event.message.channel.sendMessage("Now pinging none.").queue()
                                 null
                             }
@@ -78,29 +115,35 @@ class OwnerCli : ListenerAdapter() {
                         }
                         Channels.saveChannels()
                     } else {
-                        event.message.channel.sendMessage("Usage: `${prefix}ping [everyone|none|roleName]`")
+                        event.message.channel.sendMessage("Usage: `${prefix}ping [type] [everyone|none|roleName]`")
                     }
                 } else {
                     event.message.channel.sendMessage("Channel is not registered.").queue()
                 }
             }
             "setMessage" -> {
-                val result = Channels.channels.find { it.id == channelId }
+                if (msgType == MessageType.INVALID) {
+                    event.message.channel.sendMessage("Please choose a valid category. List valid categories with ${prefix}categories").queue()
+                }
+                val result = Channels.channels.find { it.id == channelId && it.type == msgType }
                 if (result != null) {
-                    if (command.size > 1) {
-                        val message = event.message.contentRaw.removePrefix("${prefix}setMessage").trim()
+                    if (command.size > 2) {
+                        val message = command.subList(2, command.size).toString().trim()
                         result.message = CustomMessage(message)
                         Channels.saveChannels()
                         event.message.channel.sendMessage("Set `$message` as message.").queue()
                     } else {
-                        event.message.channel.sendMessage("Usage: `${prefix}setMessage [message]`")
+                        event.message.channel.sendMessage("Usage: `${prefix}setMessage [type] [message]`")
                     }
                 } else {
                     event.message.channel.sendMessage("Channel is not registered.").queue()
                 }
             }
             "resetMessage" -> {
-                val result = Channels.channels.find { it.id == channelId }
+                if (msgType == MessageType.INVALID) {
+                    event.message.channel.sendMessage("Please choose a valid category. List valid categories with ${prefix}categories").queue()
+                }
+                val result = Channels.channels.find { it.id == channelId && it.type == msgType }
                 if (result != null) {
                     result.message = null
                     Channels.saveChannels()
@@ -132,16 +175,19 @@ class OwnerCli : ListenerAdapter() {
 
             }
             "publishMessage" -> {
-                val result = Channels.channels.find { it.id == channelId }
+                if (msgType == MessageType.INVALID) {
+                    event.message.channel.sendMessage("Please choose a valid category. List valid categories with ${prefix}categories").queue()
+                }
+                val result = Channels.channels.find { it.id == channelId && it.type == msgType }
                 if (result != null) {
                     if (result.message != null) {
-                        if (command.size > 1 && listOf("on", "off").contains(command[1])) {
-                            result.message?.pushAnnouncement = command[1] == "on"
+                        if (command.size > 2 && listOf("on", "off").contains(command[2])) {
+                            result.message?.pushAnnouncement = command[2] == "on"
                             Channels.saveChannels()
 
                             event.message.channel.sendMessage("Auto publish (message) is now ${command[1]}").queue()
                         } else {
-                            event.message.channel.sendMessage("Usage: `${prefix}publishMessage [on|off]`")
+                            event.message.channel.sendMessage("Usage: `${prefix}publishMessage [type] [on|off]`")
                         }
                     } else {
                         event.message.channel.sendMessage("Channel has no custom message.").queue()
@@ -185,22 +231,24 @@ class OwnerCli : ListenerAdapter() {
                         .setAuthor(Admin.admin?.name, Admin.admin?.avatarUrl, Admin.admin?.avatarUrl)
                         .setDescription(
                             """
-                            **${prefix}add**
+                            **${prefix}add [type]**
                             Add this channel to the notified list
                             **${prefix}serviceChannel [add|remove]**
                             Add or remove this channel to receive service message from the bot developer (recommended)
-                            **${prefix}remove**
+                            **${prefix}remove [type]**
                             Remove this channel to the notified list
-                            **${prefix}publish [on|off]**
+                            **${prefix}publish [type] [on|off]**
                             [Community|Partner|Verified only] Auto publish the message if in an announcement channel
-                            **${prefix}ping [none|everyone|roleName]**
+                            **${prefix}ping [type] [none|everyone|roleName]**
                             What role to ping
-                            **${prefix}setMessage [message]**
+                            **${prefix}setMessage [type] [message]**
                             Set a custom message to show
-                            **${prefix}resetMessage**
+                            **${prefix}resetMessag [type]e**
                             Reset the message
                             **${prefix}info**
                             Show an overview about all channels registered on this server
+                            **${prefix}categories**
+                            Show a list of categories available for alert types
                             **${prefix}report**
                             Report an issue to the Bot Admin (this will share your user name so they can contact you)
                             **${prefix}help**

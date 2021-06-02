@@ -1,5 +1,7 @@
 package org.hmcore
 
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.hmcore.web.getNewBlogPosts
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
@@ -9,12 +11,14 @@ import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.utils.ChunkingFilter
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
+import org.hmcore.web.getNewJobListings
 import org.quartz.CronScheduleBuilder.cronSchedule
 import org.quartz.JobBuilder.newJob
 import org.quartz.JobDetail
 import org.quartz.Trigger
 import org.quartz.TriggerBuilder.newTrigger
 import org.quartz.impl.StdSchedulerFactory
+import java.io.File
 import javax.security.auth.login.LoginException
 import kotlin.concurrent.timer
 
@@ -24,6 +28,27 @@ object Main {
 
     @JvmStatic
     fun main(args: Array<String>) {
+
+        if(args.isEmpty()) startBot() else
+            when(args[0]) {
+                "serverDataConvert1" -> serverDataConvert1()
+                else -> startBot()
+            }
+
+    }
+
+    fun serverDataConvert1() {
+        var file = File("servers.json")
+        if(!file.exists()) return
+        var content = ""
+        file.bufferedReader().readLines().forEach {
+            content += it
+                .replace(",\"mentionedRole\":", ",\"type\":\"BLOGPOST\",\"mentionedRole\":")
+        }
+        file.writeBytes(content.encodeToByteArray())
+    }
+
+    fun startBot() {
         val builder = JDABuilder.createLight(
             Admin.token,
             GatewayIntent.GUILD_MESSAGES,
@@ -57,9 +82,15 @@ object Main {
             }
         })
 
-        timer("Updater", daemon = true, initialDelay = 0L, period = Admin.updateMs) {
+        timer("UpdaterBlogpost", daemon = true, initialDelay = 0L, period = Admin.updateMs) {
             getNewBlogPosts()?.forEach {
-                Channels.sentToAll(MessageBuilder().setEmbed(it.toMessageEmbed()).build())
+                Channels.sentToAll(MessageBuilder().setEmbed(it.toMessageEmbed()).build(), MessageType.BLOGPOST)
+            }
+        }
+
+        timer("UpdaterJob", daemon = true, initialDelay = 0L, period = Admin.updateMs) {
+            getNewJobListings()?.forEach {
+                Channels.sentToAll(MessageBuilder().setEmbed(it.toMessageEmbed()).build(), MessageType.JOB_LISTING)
             }
         }
 
@@ -77,9 +108,7 @@ object Main {
             .withSchedule(cronSchedule("0 0/5 * 1/1 * ? *"))
             .build()
 
-        scheduler.scheduleJob(job, trigger);
-
-
+        scheduler.scheduleJob(job, trigger)
     }
 
     private fun configureMemoryUsage(builder: JDABuilder) {

@@ -8,6 +8,7 @@ import kotlinx.serialization.json.Json
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Message
+import org.hmcore.extensions.embed
 import org.hmcore.extensions.toWebhook
 import java.awt.Color
 
@@ -18,12 +19,22 @@ object Channels {
     var channels: MutableList<DiscordChannel> = refreshChannelsFromDisk()
     var serviceChannels: MutableList<ServiceChannel> = refreshServiceChannelsFromDisk()
 
-    fun sentToAll(messageEmbed: Message) {
-        messageEmbed.toWebhook().send(WEBHOOKS.blogPostsWebhookUrl)
+    fun sentToAll(messageEmbed: Message, msgType: MessageType) {
+        try {
+            messageEmbed.toWebhook().send(WEBHOOKS.blogPostsWebhookUrl)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Admin.sendDevMessage(embed {
+                title = "Error"
+                description = e.stackTraceToString()
+                color = Color.red
+            }, e.stackTrace.toString())
+        }
 
         Main.jdas.forEach { jda ->
             for (channel_pair in channels) {
                 try {
+                    if(!channel_pair.type.equals(msgType)) continue
                     val channel = jda.getTextChannelById(channel_pair.id) ?: continue
                     val customMessage = channel_pair.message?.message ?: ""
 
@@ -126,7 +137,9 @@ object Channels {
                 else -> " @${channel.guild.getRoleById(it.mentionedRole ?: "")?.name}"
             }
             val publish = if (it.autoPublish) " (publish)" else ""
-            "**${channel.guild.name}** #${channel.name}${role}${publish}${
+            val type = " " + it.type.toString()
+
+            "**${channel.guild.name}** #${channel.name}${role}${publish}${type}${
                 if (it.message == null) {
                     ""
                 } else {
@@ -150,11 +163,11 @@ object Channels {
     fun testServerId(id: Long) =
         Main.jdas.map { it.getTextChannelById(id) }.firstOrNull()
 
-    fun addChannel(id: Long, role: String?): DiscordChannel? {
-        if (channels.find { it.id == id } != null) {
+    fun addChannel(id: Long, msgType: MessageType): DiscordChannel? {
+        if (channels.find { it.id == id && it.type == msgType } != null) {
             return null
         }
-        val out = DiscordChannel(id, role)
+        val out = DiscordChannel(id, msgType)
         channels.add(out)
         saveChannels()
         return out

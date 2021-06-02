@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="Add file tests">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Message.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/webhook/DiscordWebhookEmbed.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/webhook/DiscordWebhookEmbed.kt" afterDir="false" />
+    <list default="true" id="1aabf22b-2f57-46ac-9973-367d8668ffd3" name="Default Changelist" comment="twitter gods dont cancel me pls">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/hmcore/MessageType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/serialization/EnumTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/hmcore/DiscordWebhook.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/hmcore/TwitterJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hmcore/TwitterJob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Channels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Channels.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Color.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/webhook/WebhookCaller.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/ColorTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/ColorTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/DataIO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/DataIO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/OwnerCli.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/org/hmcore/OwnerCli.kt" afterDir="false" />
     </list>
     <list id="44283a45-f406-407f-bce2-a31bb9bfc0cc" name="Changes by Valentin" comment="Changes by Valentin" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,9 +99,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Kotlin Object" />
         <option value="Kotlin File" />
+        <option value="Enum" />
+        <option value="Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -125,15 +124,15 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/build.gradle" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Embed.kt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/File.kt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Jsoup.kt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/EmbedTest.kt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/ColorTest.kt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/model/JobListingPreview.kt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/model/BlogPostPreview.kt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/ColorTest.kt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/build.gradle" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Color.kt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/test/kotlin/org/hmcore/extensions/EmbedTest.kt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/File.kt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Embed.kt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/kotlin/org/hmcore/extensions/Jsoup.kt" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="o7p0t8es" />
@@ -186,7 +185,7 @@
       <recent name="org" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL">
+  <component name="RunManager" selected="Kotlin.Main">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -198,12 +197,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ColorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="BlogPostPreviewTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;org.hmcore.extensions.ColorTest&quot;" />
+        <option name="scriptParameters" value="--tests &quot;org.hmcore.model.BlogPostPreviewTest&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -240,33 +239,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="EmbedTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="EnumTest.Enum serialization" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;org.hmcore.extensions.EmbedTest&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="FileTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;org.hmcore.extensions.FileTest&quot;" />
+        <option name="scriptParameters" value="--tests &quot;org.hmcore.serialization.EnumTest.Enum serialization&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -313,21 +291,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.hmcore.Main" />
+      <module name="HytaleUpdateBot.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Gradle.ColorTest" />
-      <item itemvalue="Gradle.EmbedTest" />
-      <item itemvalue="Gradle.FileTest" />
       <item itemvalue="Gradle.FileTest.Ensure exists should create a file if supplied with null but not write text" />
-      <item itemvalue="JUnit.All Tests" />
       <item itemvalue="Gradle.DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL" />
+      <item itemvalue="Gradle.EnumTest.Enum serialization" />
+      <item itemvalue="Gradle.BlogPostPreviewTest" />
+      <item itemvalue="JUnit.All Tests" />
+      <item itemvalue="Kotlin.Main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.Main" />
+        <item itemvalue="Gradle.BlogPostPreviewTest" />
+        <item itemvalue="Gradle.EnumTest.Enum serialization" />
         <item itemvalue="Gradle.DiscordWebhookEmbed.Webhook should not throw and return false if supplied invalid URL" />
         <item itemvalue="Gradle.FileTest.Ensure exists should create a file if supplied with null but not write text" />
-        <item itemvalue="Gradle.FileTest" />
-        <item itemvalue="Gradle.EmbedTest" />
-        <item itemvalue="Gradle.ColorTest" />
       </list>
     </recent_temporary>
   </component>
