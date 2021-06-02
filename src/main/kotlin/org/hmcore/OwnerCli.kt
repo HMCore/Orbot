@@ -202,7 +202,7 @@ class OwnerCli : ListenerAdapter() {
                         .setTitle("Server overview")
                         .setColor(Color.GREEN)
                         .setDescription("""
-                            ${Channels.getServerNames(event.message.guild.idLong)?.joinToString("\n")}
+                            ${Channels.getServerNames(event.message.guild.idLong).joinToString("\n")}
                                                 
                             **_Service Channels_**
                             ${Channels.getServiceChannelServers(event.message.guild.idLong).joinToString("\n")}

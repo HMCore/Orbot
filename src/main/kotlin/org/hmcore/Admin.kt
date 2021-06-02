@@ -76,7 +76,7 @@ object Admin {
             embed {
                 title = "Now watching for new Hytale Blogposts every ${updateMs / 1000}s"
                 description = """
-                    ${Channels.getServerNames()?.joinToString("\n")}
+                    ${Channels.getServerNames().joinToString("\n")}
                     
                     **_Service Channels_**
                     ${Channels.getServiceChannelServers().joinToString("\n")}
