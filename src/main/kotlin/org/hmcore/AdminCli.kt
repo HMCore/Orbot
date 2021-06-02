@@ -1,5 +1,6 @@
 package org.hmcore
 
+import kotlinx.cli.ArgParser
 import org.hmcore.web.fakeUpdateBlogPost
 import org.hmcore.web.fakeUpdateJobListings
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -12,6 +13,7 @@ class AdminCli : ListenerAdapter() {
     val prefix = "!"
 
     override fun onPrivateMessageReceived(event: PrivateMessageReceivedEvent) {
+
         val msg = event.message.contentRaw
         if (event.author.idLong != Admin.userId ||
             !msg.startsWith(prefix)

@@ -92,6 +92,9 @@ object Main {
             getNewJobListings()?.forEach {
                 Channels.sentToAll(MessageBuilder().setEmbed(it.toMessageEmbed()).build(), MessageType.JOB_LISTING)
             }
+            getNewJobListings()?.forEach {
+
+            }
         }
 
         val scheduler = StdSchedulerFactory.getDefaultScheduler()

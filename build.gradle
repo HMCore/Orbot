@@ -23,6 +23,8 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.13.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1'
 
+    implementation 'org.jetbrains.kotlinx:kotlinx-cli:0.3.2'
+
     implementation 'com.github.redouane59.twitter:twittered:1.20'
     implementation group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.2'
 
